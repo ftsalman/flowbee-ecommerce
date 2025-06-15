@@ -47,3 +47,7 @@
   background-image: radial-gradient(#bbb5b564 1px, transparent 1px);
   background-size: 10px 10px;
 }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
