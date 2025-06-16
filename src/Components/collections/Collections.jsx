@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "../ui/Card";
 import { Link } from "react-router-dom";
+import { IconArrowRight } from "../../assets/icons/InterfaceIcons";
 
 export const Collections = () => {
   const collections = [
@@ -31,14 +32,13 @@ export const Collections = () => {
             className="absolute inset-0 w-full h-full object-contain opacity-90 "
           />
           <div className="relative z-10  p-4 rounded">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-3xl font-semibold text-gray-900">
               {collections[0].title}
             </h2>
-            <Link
-              to="#"
-              className="text-sm text-gray-600 inline-flex items-center gap-1 mt-1"
-            >
-              Collection <span>→</span>
+            <Link to="#">
+              <p className="text-sm text-gray-600 underline inline-flex items-center gap-1 mt-1">
+                Collections <IconArrowRight />
+              </p>
             </Link>
           </div>
         </Card>
@@ -57,12 +57,13 @@ export const Collections = () => {
               />
               <div className="relative z-10  text-black">
                 <div>
-                  <h4 className="text-lg font-semibold">{item.title}</h4>
-                  <Link
-                    to="#"
-                    className="text-sm text-gray-600 inline-flex items-center gap-1 mt-1"
-                  >
-                    Collection <span>→</span>
+                  <h4 className="text-3xl font-semibold text-gray-900">
+                    {item.title}
+                  </h4>
+                  <Link to="#">
+                    <p className="text-sm text-gray-600 underline inline-flex items-center gap-1 mt-1">
+                      Collections <IconArrowRight />
+                    </p>
                   </Link>
                 </div>
               </div>

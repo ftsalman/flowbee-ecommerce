@@ -3,6 +3,9 @@ import Hero from "../../Components/hero/Hero";
 import { Categories } from "../../Components/categories/Categories";
 import NewArrivals from "../../Components/arrivals/NewArrivals";
 import { Collections } from "../../Components/collections/Collections";
+import TopSeller from "../../Components/topSeller/TopSeller";
+import { Service } from "../../Components/service/Service";
+import PromoBanner from "../../Components/promo-banner/PromoBanner";
 
 // Dummy data as fallback
 const categories_dummy = [
@@ -61,6 +64,9 @@ const HomePage = () => {
       <Categories data={categoryData} isLoading={fetchStatus} />
       <NewArrivals/>
       <Collections/>
+      <TopSeller/>
+      <Service/>
+      <PromoBanner/>
     </div>
   );
 };
