@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Hero from "../../Components/hero/Hero";
 import { Categories } from "../../Components/categories/Categories";
 import NewArrivals from "../../Components/arrivals/NewArrivals";
+import { Collections } from "../../Components/collections/Collections";
 
 // Dummy data as fallback
 const categories_dummy = [
@@ -55,10 +56,11 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className=" overflow-clip space-y-9">
+    <div className=" overflow-clip space-y-9 ">
       <Hero />
       <Categories data={categoryData} isLoading={fetchStatus} />
       <NewArrivals/>
+      <Collections/>
     </div>
   );
 };
