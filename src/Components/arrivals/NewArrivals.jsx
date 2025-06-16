@@ -106,9 +106,21 @@ const NewArrivals = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); 
+    }, 2000);
     return () => clearTimeout(timeout);
   }, []);
+
+  const scrollToPage = (pageIndex) => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const scrollAmount = pageIndex * CARD_WIDTH * VISIBLE;
+    el.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+    setPage(pageIndex);
+  };
 
   return (
     <section className="py-12 px-6 md:px-20 space-y-6">
@@ -120,7 +132,7 @@ const NewArrivals = () => {
             {Array.from({ length: pages }).map((_, i) => (
               <button
                 key={i}
-                onClick={() => setPage(i)}
+                onClick={() => scrollToPage(i)}
                 className="relative cursor-pointer h-4 w-4"
               >
                 <span
