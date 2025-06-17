@@ -69,7 +69,7 @@ export const ProductDisplay = ({ product }) => {
       />
 
       {/* Info Section */}
-      <div className="flex-1  px-6 space-y-4 px-1">
+      <div className="flex-1  px-6 space-y-4 ">
         {/* Title & Price */}
         <div className="space-y-2">
           <h1 className="text-3xl font-semibold">{product.label}</h1>
