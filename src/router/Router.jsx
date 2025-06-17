@@ -4,6 +4,8 @@ import AuthLayout from "../layouts/AuthLayout";
 import SignupPage from "../pages/auth/SignupPage";
 import HomePage from "../pages/home-page/HomePage";
 import { HomeLayout } from "../layouts/HomeLayout";
+import CategoriesPage from "../pages/category-page/CategoriesPage";
+import { ProductPage } from "../pages/Product-details/ProductPage";
 
 export const router = createBrowserRouter([
   {
@@ -31,13 +33,22 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  
   {
     path: "/home",
-    element:<HomeLayout/>,  // Layout here
+    element: <HomeLayout />, // Layout here
     children: [
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "products/:productId",
+        element: <ProductPage />,
+      },
+      {
+        path:"category/:id",
+        element: <CategoriesPage />,
       },
     ],
   },

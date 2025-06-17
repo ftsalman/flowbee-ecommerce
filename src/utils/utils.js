@@ -22,3 +22,9 @@ export const sortArr = (array, key, sortType) => {
     return 0;
   });
 };
+
+export const slugify = (text) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");

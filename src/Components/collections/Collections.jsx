@@ -18,7 +18,6 @@ export const Collections = () => {
       image: "/images/products/cabel.png",
     },
   ];
-
   return (
     <section className="py-7 px-6 md:px-24">
       <h2 className="text-2xl font-semibold mb-10">Shop Collection</h2>

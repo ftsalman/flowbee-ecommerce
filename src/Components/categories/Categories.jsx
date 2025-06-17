@@ -1,5 +1,6 @@
 import React from "react";
 import { List } from "../ui/List";
+import { Link } from "react-router-dom";
 
 export const Categories = ({ data = {}, isLoading = false }) => {
   return (
@@ -21,7 +22,8 @@ export const Categories = ({ data = {}, isLoading = false }) => {
             uniqueKey="id"
             data={data}
             render={(item) => (
-              <div
+              <Link
+               to={`category/${item.id}`}
                 key={item.id}
                 className="group p-4 cursor-pointer hover:scale-105 transition duration-500 flex flex-col items-center"
               >
@@ -34,7 +36,7 @@ export const Categories = ({ data = {}, isLoading = false }) => {
                 <span className="mt-4 text-sm font-medium text-gray-800">
                   {item.label}
                 </span>
-              </div>
+           </Link>
             )}
           />
         )}
