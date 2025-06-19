@@ -1,5 +1,6 @@
 import React from "react";
-import { List } from "../ui/List";
+import { List } from "../../ui/List";
+
 
 export const ProductSpecs = ({ specs }) => {
   return (

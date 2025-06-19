@@ -1,7 +1,7 @@
 import React from "react";
-import { cn } from "../../utils/utils";
-import { Button } from "../ui/button/Button";
-import { List } from "../ui/List";
+import { cn } from "../../../utils/utils";
+import { Button } from "../../ui/button/Button";
+import { List } from "../../ui/List";
 
 export const StorageSelector = ({ options, selected, onSelect }) => {
   return (

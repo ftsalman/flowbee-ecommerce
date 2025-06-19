@@ -1,7 +1,8 @@
 import React from "react";
-import { Button } from "../ui/button/Button";
-import { List } from "../ui/List";
-import { cn } from "../../utils/utils";
+
+import { List } from "../../ui/List";
+import { Button } from "../../ui/button/Button";
+import { cn } from "../../../utils/utils";
 
 export const ColorSelector = ({ options, selectedColor, onSelect }) => {
   return (

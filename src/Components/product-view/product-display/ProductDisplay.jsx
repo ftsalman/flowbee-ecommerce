@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import { ProductImageGallery } from "./ProductImageGallery";
-import { ColorSelector } from "./ColorSelector";
-import { StorageSelector } from "./StorageSelector";
-import { ProductSpecs } from "./ProductSpecs";
-import { Button } from "../ui/button/Button";
+import { Button } from "../../ui/button/Button";
 import {
   IconBattery,
   IconCamera,
@@ -15,7 +11,11 @@ import {
   IconScreenSize,
   IconShield,
   IconVerified,
-} from "../../assets/icons/InterfaceIcons";
+} from "../../../assets/icons/InterfaceIcons";
+import { ColorSelector } from "./ColorSelector";
+import { ProductImageGallery } from "./ProductImageGallery";
+import { StorageSelector } from "./StorageSelector";
+import { ProductSpecs } from "./ProductSpecs";
 
 export const ProductDisplay = ({ product }) => {
   const [activeImage, setActiveImage] = useState(product.images[0]);

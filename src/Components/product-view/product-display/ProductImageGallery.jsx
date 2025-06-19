@@ -1,6 +1,7 @@
 import React from 'react'
-import { List } from '../ui/List'
-import { cn } from '../../utils/utils'
+
+import { List } from '../../ui/List'
+import { cn } from '../../../utils/utils'
 
 export const ProductImageGallery = ({images, activeImage, setActiveImage}) => {
   return (

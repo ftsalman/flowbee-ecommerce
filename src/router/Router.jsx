@@ -5,7 +5,7 @@ import SignupPage from "../pages/auth/SignupPage";
 import HomePage from "../pages/home-page/HomePage";
 import { HomeLayout } from "../layouts/HomeLayout";
 import CategoriesPage from "../pages/category-page/CategoriesPage";
-import { ProductPage } from "../pages/Product-details/ProductPage";
+import ProductViewPage from "../pages/Product-details/ProductViewPage";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "products/:productId",
-        element: <ProductPage />,
+        element: <ProductViewPage />,
       },
       {
         path:"category/:id",
