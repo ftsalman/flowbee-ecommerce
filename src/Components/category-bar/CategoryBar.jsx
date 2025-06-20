@@ -1,130 +1,70 @@
 import React, { useState } from "react";
 import { List } from "../ui/List";
-import {
-  IconCamera,
-  IconComputer,
-  IconGaming,
-  IconHeadphones,
-  IconPhone,
-} from "../../assets/icons/InterfaceIcons";
-
-const categories = [
-  { id: "1", label: "Phones", icon: IconPhone },
-  { id: "2", label: "Computers", icon: IconComputer },
-  { id: "3", label: "Smart Watches", icon: IconGaming },
-  { id: "4", label: "Cameras", icon: IconCamera },
-  { id: "5", label: "Headphones", icon: IconHeadphones },
-  { id: "6", label: "Gaming", icon: IconGaming },
-];
+import { CATEGORIES_DATA } from "../../constants/CategoriesDropdownData";
+import { CategoryList } from "./CategoryList";
+// import { IconMenu2 } from "@tabler/icons-react"; // or any hamburger icon
+import { CategoryItem } from "./CategoryItems";
+import { IconHamburger, IconUser } from "../../assets/icons/InterfaceIcons";
 
 export const CategoryBar = () => {
-  const [hovered, setHovered] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const openCategory =
+    CATEGORIES_DATA.find((c) => c.label === openDropdown) || null;
+
   return (
-    <div className="bg-[#1E1E1E] h-fit w-full px-20 text-white whitespace-nowrap border-t border-gray-700 relative z-10">
-      <List
-        data={categories}
-        uniqueKey="id"
-        render={({ label, icon: Icon }, idx) => (
-          <div
-            className={`
-              flex items-center gap-2 px-[2rem] py-2
-              cursor-pointer select-none transition-colors
-              
-              ${idx !== 0 ? "border-l border-neutral-700" : ""}
-              ${hovered === label ? "text-yellow-400" : "text-gray-300"}
-            `}
-            onMouseEnter={() => setHovered(label)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            {Icon && <Icon size="24" />}
-            <span className="text-sm">{label}</span>
-          </div>
-        )}
-      />
-    </div>
+    <nav className="relative z-10 bg-[#1E1E1E] border-t p-1 border-gray-700 text-white">
+      {/* ------ Desktop row (hidden on small) ------ */}
+      <div
+        className="hidden md:flex items-center gap-px px-20"
+        onMouseLeave={() => setOpenDropdown(null)}
+      >
+        <List
+          data={CATEGORIES_DATA}
+          uniqueKey="id"
+          render={(item, idx) => (
+            <CategoryItem
+              key={item.id}
+              idx={idx}
+              {...item}
+              isActive={openDropdown === item.label}
+              onMouseEnter={() => setOpenDropdown(item.label)}
+            />
+          )}
+        />
+      </div>
+
+      {/* ------ Mega‑menu (desktop only) ------ */}
+      <div className="hidden md:block">
+        <CategoryList openCategory={openCategory} />
+      </div>
+
+      {/* ------ Mobile bar ------ */}
+      <div className="md:hidden flex items-center justify-between px-4 py-3">
+        <span className="font-semibold">Shop by Category</span>
+        <button
+          aria-label="Toggle categories"
+          onClick={() => setMobileOpen((p) => !p)}
+          className="p-2 rounded-md hover:bg-neutral-800 transition"
+        >
+          <IconHamburger size="24" />
+        </button>
+      </div>
+
+      {/* ------ Mobile dropdown (simple list) ------ */}
+      {mobileOpen && (
+        <ul className="md:hidden bg-neutral-900 divide-y divide-neutral-700">
+          {CATEGORIES_DATA.map((cat) => (
+            <li
+              key={cat.id}
+              className="px-6 py-3 text-sm hover:bg-neutral-800 active:bg-neutral-700 transition"
+            >
+              {cat.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </nav>
   );
 };
-
-// // components/category-bar/CategoryBar.jsx
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { CategoryItem } from "./CategoryItem";
-
-// import {
-//   IconCamera,
-//   IconComputer,
-//   IconGaming,
-//   IconHeadphones,
-//   IconPhone,
-// } from "../../assets/icons/InterfaceIcons";
-
-// const CATEGORIES = [
-//   {
-//     id: "men",
-//     label: "Men",
-//     icon: IconPhone,
-//     sub: [
-//       { title: "Top Wear", items: ["All Top Wear", "Shirts", "T-Shirts","Winter Wear", "Jackets","Sweat Shirts", "Jackets"] },
-//       { title: "Bottom Wear", items: ["Jeans", "Shorts", "Trousers"] },
-//       { title: "Accessories", items: ["Belts", "Bags", "Watches"] },
-//     ],
-//   },
-//   {
-//     id: "computers",
-//     label: "Computers",
-//     icon: IconComputer,
-//     sub: [
-//       { title: "Laptops", items: ["Gaming", "MacBooks"] },
-//       { title: "Desktops", items: ["Towers", "All‑in‑Ones"] },
-//     ],
-//   },
-//   {
-//     id: "watches",
-//     label: "Smart Watches",
-//     icon: IconGaming,
-//     sub: [
-//       { title: "Brands", items: ["Apple", "Samsung", "Fitbit"] },
-//       { title: "Straps", items: ["Leather", "Silicone", "Metal"] },
-//     ],
-//   },
-//   { id: "cameras", label: "Cameras", icon: IconCamera },
-//   { id: "headphones", label: "Headphones", icon: IconHeadphones },
-//   { id: "gaming", label: "Gaming", icon: IconGaming },
-// ];
-
-// export const CategoryBar = () => {
-//   const [active, setActive] = useState(null);
-//   const navigate = useNavigate();
-
-//   const handleCategoryClick = (id) => {
-//     const cat = CATEGORIES.find((c) => c.id === id);
-//     if (!cat?.sub) {
-//       navigate(`/category/${id}`);
-//     } else {
-//       setActive((prev) => (prev === id ? null : id));
-//     }
-//   };
-
-//   const handleSubClick = (label) => {
-//     navigate(`/search?query=${encodeURIComponent(label)}`);
-//     setActive(null);
-//   };
-
-//   return (
-//     <nav className="bg-[#1E1E1E] flex items-center justify-center gap-7  border-t border-gray-700 w-full  text-white select-none relative z-50">
-//       <ul className="flex">
-//         {CATEGORIES.map((cat, idx) => (
-//           <CategoryItem
-//             key={cat.id}
-//             idx={idx}
-//             {...cat}
-//             isOpen={active === cat.id}
-//             setActive={setActive}
-//             onClick={handleCategoryClick}
-//             onSubClick={handleSubClick}
-//           />
-//         ))}
-//       </ul>
-//     </nav>
-//   );
-// };

@@ -715,7 +715,11 @@ export const IconBattery = ({ size = "16", color = "currentColor" }) => {
   );
 };
 
-export const IconArrowDown = ({ size = "16", color = "currentColor",  className = "", }) => {
+export const IconArrowDown = ({
+  size = "16",
+  color = "currentColor",
+  className = "",
+}) => {
   return (
     <svg
       width={size}
@@ -732,5 +736,44 @@ export const IconArrowDown = ({ size = "16", color = "currentColor",  className 
         stroke-linecap="round"
       />
     </svg>
+  );
+};
+
+export const IconHamburger = ({ size = "16" }) => {
+  return (
+    <>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="2"
+          y="4.5"
+          width="20"
+          height="3"
+          rx="1.5"
+          fill="currentColor"
+        />
+        <rect
+          x="2"
+          y="10.5"
+          width="20"
+          height="3"
+          rx="1.5"
+          fill="currentColor"
+        />
+        <rect
+          x="2"
+          y="16.5"
+          width="20"
+          height="3"
+          rx="1.5"
+          fill="currentColor"
+        />
+      </svg>
+    </>
   );
 };
