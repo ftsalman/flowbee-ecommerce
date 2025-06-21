@@ -11,7 +11,7 @@ export const HomeLayout = () => {
       <Navbar />
       <CategoryBar />
 
-      <div className="container overflow-auto overflow-x-hidden panel-scrollbar flex-grow h-[calc(100dvh-9.75rem)] md:h-[calc(100dvh-5.1rem)] duration-300  bg-[#F9F9F9]">
+      <div className=" w-full  max-w-[100vw] overflow-auto overflow-x-hidden panel-scrollbar flex-grow h-[calc(100dvh-9.75rem)] md:h-[calc(100dvh-5.1rem)] duration-300  bg-[#F9F9F9]">
         <Outlet />
       </div>
       {/* Optional: Footer if needed */}

@@ -1,12 +1,14 @@
 import React, { useRef } from "react";
 import { IconSearch } from "../../assets/icons/InterfaceIcons";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { cn } from "../../utils/utils";
 
 export const SearchBar = ({
   isSearchExpanded,
   setIsSearchExpanded,
   setSearchValue,
   searchValue,
+  className,
 }) => {
   const inputRef = useRef(null);
 
@@ -40,17 +42,24 @@ export const SearchBar = ({
         onKeyDown={handleKeyPressInSearchBar}
         ref={inputRef}
         disabled={!isSearchExpanded}
-        className={`transition-all duration-300 ease-in-out 
+        className={cn(
+          `transition-all duration-300 ease-in-out 
           ${isSearchExpanded ? "pl-10" : "w-10 placeholder:opacity-0"}
           h-12 w-full  rounded-md border px-2 border-gray-200 bg-[#F7F7F7] 
-          shadow-inner text-sm text-gray-800 outline-none`}
+          shadow-inner text-sm text-gray-800 outline-none`,
+          className
+        )}
       />
 
       {/* Search Icon Button */}
       <button
         onClick={handleSearchExpand}
         className={`absolute inset-y-0 left-0 w-10 flex items-center justify-center 
-          ${isSearchExpanded ? "pointer-events-none text-gray-400" : "pointer-events-auto text-gray-600"}`}
+          ${
+            isSearchExpanded
+              ? "pointer-events-none text-gray-400"
+              : "pointer-events-auto text-gray-600"
+          }`}
       >
         <IconSearch size={18} />
       </button>

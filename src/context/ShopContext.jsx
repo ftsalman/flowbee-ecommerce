@@ -1,5 +1,7 @@
 import { createContext } from "react";
 import {arrivals_data} from '../assets/ArrivalsData'
+
+
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = ({ children }) => {

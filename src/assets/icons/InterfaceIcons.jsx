@@ -777,3 +777,17 @@ export const IconHamburger = ({ size = "16" }) => {
     </>
   );
 };
+
+export const IconChevronLeft = ({ size = "16", color = "currentColor" }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M15 18L9 12L15 6" stroke="black" />
+    </svg>
+  );
+};

@@ -23,7 +23,7 @@ export const Categories = ({ data = {}, isLoading = false }) => {
             data={data}
             render={(item) => (
               <Link
-               to={`category/${item.id}`}
+               to={`ProductsPage/${item.id}`}
                 key={item.id}
                 className="group p-4 cursor-pointer hover:scale-105 transition duration-500 flex flex-col items-center"
               >
@@ -52,3 +52,8 @@ const SkeletonCard = () => (
     <div className="w-2/3 h-4 bg-gray-300 rounded" />
   </div>
 );
+
+
+
+
+      
