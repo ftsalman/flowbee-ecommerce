@@ -114,8 +114,9 @@ export const ProductsPage = () => {
   }, [currentPage]);
 
   return (
-    <PageContainer className="p-0 flex flex-col lg:flex-row gap-4 panel-scrollbar overflow-x-hidden">
-      <div className="w-full flex flex-row">
+    <PageContainer className="p-0 ">
+      <Breadcrumbs/>
+      <div className="w-full flex flex-row lg:flex-row gap-4 panel-scrollbar overflow-x-hidden">
         <FilterPanelContainer>
           <FilterSidebar />
         </FilterPanelContainer>
@@ -139,7 +140,7 @@ export const ProductsPage = () => {
           </div>
 
           <List
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-full px-2"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full px-4"
             data={paginatedProducts}
             uniqueKey="id"
             render={(item) => <ProductCard data={item} loading={isLoading} />}
