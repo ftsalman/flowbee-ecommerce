@@ -24,7 +24,7 @@ const mockOrders = [
     productName: "Samsung Galaxy S23 Ultra 256GB",
     imageUrl: "/images/products/img15.png",
     deliveryDate: "2025-05-25",
-    status: "Shipped",
+    status:"Cancelled",
   },
   {
     orderId: "1728947826",
@@ -35,21 +35,17 @@ const mockOrders = [
   },
 ];
 
-
-
 export const OrdersHistoryPage = () => {
-
   const [isSearchExpanded, setIsSearchExpanded] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [ordersData, setOrdersData] = useState([]);
   const [fetchStatus, setFetchStatus] = useState("loading"); // 'loading' | 'success' | 'error'
+  const [activeStatus, setActiveStatus] = useState(["On the way"]);
 
-  
   useEffect(() => {
     const fetchOrdersData = async () => {
       setFetchStatus("loading");
       try {
-       
         await new Promise((res) => setTimeout(res, 600));
         setOrdersData(mockOrders);
         setFetchStatus("success");
@@ -61,17 +57,31 @@ export const OrdersHistoryPage = () => {
     fetchOrdersData();
   }, []);
 
-  const filteredOrders = ordersData.filter((order) =>
-    order.productName.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  // Filter Orders
+  const filteredOrders = ordersData.filter((order) => {
+    const matchesSearch = order.productName
+      .toLowerCase()
+      .includes(searchValue.toLowerCase());
 
+    const matchesStatus =
+      activeStatus.length === 0 || activeStatus.includes(order.status);
+
+    return matchesSearch && matchesStatus;
+  });
   return (
     <PageContainer className="p-0">
       <Breadcrumbs />
 
       <div className="w-full flex gap-4 panel-scrollbar overflow-x-hidden">
         <FilterPanelContainer>
-          <OrdersFilter />
+          <OrdersFilter
+            selected={activeStatus}
+            onChange={(status, checked) => {
+              setActiveStatus((prev) =>
+                checked ? [...prev, status] : prev.filter((s) => s !== status)
+              );
+            }}
+          />
         </FilterPanelContainer>
 
         <div className="flex-grow flex flex-col px-3 py-4 panel-scrollbar overflow-y-auto">

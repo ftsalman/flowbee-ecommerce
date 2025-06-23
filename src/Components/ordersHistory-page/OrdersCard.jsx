@@ -5,8 +5,8 @@ import { Button } from "../ui/button/Button";
 
 const STATUS_DOT_COLORS = {
   Delivered: "bg-green-500",
-  Shipped: "bg-yellow-400",
-  Pending: "bg-gray-400",
+  Ontheway: "bg-yellow-400",
+  Returned: "bg-gray-400",
   Cancelled: "bg-red-500",
 };
 
@@ -76,7 +76,3 @@ const OrdersCard = ({ data = {}, loading = false }) => {
 };
 
 export default OrdersCard;
-
-
-
-
