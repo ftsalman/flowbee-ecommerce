@@ -38,7 +38,7 @@ const mockOrders = [
 
 
 export const OrdersHistoryPage = () => {
-  
+
   const [isSearchExpanded, setIsSearchExpanded] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [ordersData, setOrdersData] = useState([]);
@@ -61,7 +61,6 @@ export const OrdersHistoryPage = () => {
     fetchOrdersData();
   }, []);
 
-  /* filter by search text */
   const filteredOrders = ordersData.filter((order) =>
     order.productName.toLowerCase().includes(searchValue.toLowerCase())
   );
