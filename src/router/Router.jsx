@@ -6,6 +6,8 @@ import HomePage from "../pages/home-page/HomePage";
 import { HomeLayout } from "../layouts/HomeLayout";
 import ProductViewPage from "../pages/Product-details/ProductViewPage";
 import { ProductsPage } from "../pages/products-page/ProductsPage";
+import SettingsPage from "../pages/SettingsPage";
+import { OrdersHistoryPage } from "../pages/OrdersHistoryPage";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +35,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  
+
   {
     path: "/home",
     element: <HomeLayout />, // Layout here
@@ -47,8 +49,17 @@ export const router = createBrowserRouter([
         element: <ProductViewPage />,
       },
       {
-        path:"ProductsPage/:id",
+        path: "ProductsPage/:id",
         element: <ProductsPage />,
+      },
+      {
+        path: "settings",
+        element: <SettingsPage />,
+      },
+      {
+        path: "orders",
+
+        element: <OrdersHistoryPage />,
       },
     ],
   },
