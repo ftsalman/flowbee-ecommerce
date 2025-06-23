@@ -9,7 +9,7 @@ import OrdersCard from "../Components/ordersHistory-page/OrdersCard";
 import { OrdersCardSkeleton } from "../Components/ordersHistory-page/OrdersCardSkeleton";
 
 /* ----------------------------------------------------------
-   MOCK DATA — replace with real API later
+dummy data
 ---------------------------------------------------------- */
 const mockOrders = [
   {
