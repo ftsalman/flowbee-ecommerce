@@ -16,15 +16,15 @@ export const Navbar = () => {
       <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-[64px] flex items-center justify-between gap-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-        <Link to="/home">
-          <img
-            src="/svgs/brand-logos/logo-flowbee-secondary.svg"
-            alt="Flowbee Logo"
-            width={130}
-            height={36}
-            className="object-contain"
-          />
-        </Link>
+          <Link to="/home">
+            <img
+              src="/svgs/brand-logos/logo-flowbee-secondary.svg"
+              alt="Flowbee Logo"
+              width={130}
+              height={36}
+              className="object-contain"
+            />
+          </Link>
         </div>
 
         {/* Search Bar - center aligned */}
@@ -39,12 +39,17 @@ export const Navbar = () => {
 
         {/* Right Icons */}
         <div className="flex items-center gap-5 text-gray-700">
-          <span className=" cursor-pointer">
-            <IconFavorites size="24" />
-          </span>
-          <span className=" cursor-pointer">
-            <IconShoppingCart size="24" />
-          </span>
+          <Link to="#">
+            <span className=" cursor-pointer">
+              <IconFavorites size="24" />
+            </span>
+          </Link>
+          <Link to="/home/cart">
+            <span className=" cursor-pointer">
+              <IconShoppingCart size="24" />
+            </span>
+          </Link>
+
           <Link to="/home/settings">
             <span className=" cursor-pointer">
               <IconUser size="24" />

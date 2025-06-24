@@ -8,6 +8,7 @@ import ProductViewPage from "../pages/Product-details/ProductViewPage";
 import { ProductsPage } from "../pages/products-page/ProductsPage";
 import SettingsPage from "../pages/SettingsPage";
 import { OrdersHistoryPage } from "../pages/OrdersHistoryPage";
+import CartPage from "../pages/CartPage";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ export const router = createBrowserRouter([
         path: "orders",
 
         element: <OrdersHistoryPage />,
+      },
+       {
+        path: "cart",
+
+        element: <CartPage />,
       },
     ],
   },
