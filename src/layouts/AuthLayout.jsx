@@ -31,14 +31,20 @@ const AuthLayout = ({ children }) => {
       </div>
 
       {/* Right Section - White background with form */}
-      <div className="bg-white flex flex-col justify-between py-10 px-6 md:px-12">
-        <div className="flex-grow flex items-center justify-center">
+      <div className="bg-white flex flex-col justify-between py-10 px-6 md:px-12 relative overflow-hidden">
+        {/* Right-side Background Shape */}
+        <img
+          src="/svgs/auth/auth-vector-2.svg"
+          alt="Right Background Vector"
+          className="absolute bottom-0 w-[30rem] left-[-5rem] opacity- pointer-events-none select-none"
+        />
+        <div className="flex-grow flex items-center justify-center relative z-20">
           {children}
         </div>
 
         {/* Optional footer */}
-        <div className="pt-1 flex items-center justify-end text-sm text-gray-600">
-          <p  className=" text-[0.8rem]">© 2024. All Rights Reserved</p>
+        <div className="pt-1 flex items-center justify-end text-sm text-gray-600 relative z-10">
+          <p className=" text-[0.8rem]">© 2024. All Rights Reserved</p>
           {/* <Button
             className="rounded-full border-brand-secondary-800"
             size="md"

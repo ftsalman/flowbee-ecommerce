@@ -21,7 +21,7 @@ const SignupPage = () => {
         </h4>
       </div>
 
-      <div className=" relative w-full md:w-auto md:min-w-[446px] h-fit mx-4 md:p-6 p-4 py-8 mt-9 text-left text-sm rounded-xl border border-gray-100 shadow-sm ">
+      <div className=" relative w-full md:w-auto md:min-w-[546px] h-fit mx-4 md:p-6 p-4 py-8 mt-9 text-left text-sm bg-white rounded-xl border border-gray-100 shadow-sm ">
         <div className="absolute inset-x-0 bottom-0 h-24  dotted-button-bg"></div>
 
         <form className="mt-6 space-y-5 relative ">

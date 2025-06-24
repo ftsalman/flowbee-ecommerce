@@ -45,7 +45,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="w-full md:w-auto items-center justify-center flex flex-col gap-6 md:min-w-[356px]">
+      <div className="w-full md:w-auto items-center justify-center flex flex-col gap-6 md:min-w-[356px] ">
         <div className="flex-shrink-0 max-w-[500px]">
           <img
             src="/svgs/brand-logos/logo-flowbee-secondary.svg"
@@ -54,7 +54,7 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className=" relative w-full md:w-auto md:min-w-[446px] h-fit mx-4 md:p-6 p-4 py-8 mt-9 text-left text-sm rounded-xl border border-gray-100 shadow-sm ">
+        <div className=" relative w-full md:w-auto md:min-w-[546px] h-fit mx-4 md:p-6 p-4 py-8 mt-10 text-left bg-white text-sm rounded-xl border border-gray-100 shadow-sm ">
           <div className="absolute inset-x-0 bottom-0 h-24  dotted-button-bg"></div>
 
           <div className="flex items-center justify-center">
