@@ -1,21 +1,31 @@
 import React, { useState } from "react";
-import { SearchBar } from "../ui/SearchBar";
 import { Link } from "react-router-dom";
 import {
   IconFavorites,
   IconShoppingCart,
   IconUser,
+  IconHamburger,
+  IconSearch,
 } from "../../assets/icons/InterfaceIcons";
+import { SearchBar } from "../ui/SearchBar";
 
 export const Navbar = () => {
-  const [isSearchExpanded, setIsSearchExpanded] = useState(true);
   const [searchValue, setSearchValue] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="w-full bg-white border-b border-gray-200">
+    <nav className="w-full bg-white border-b border-gray-200">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-[64px] flex items-center justify-between gap-4">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
+        {/* Left: Logo + Hamburger (Mobile only) */}
+        <div className="flex items-center gap-3">
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle Menu"
+          >
+            <IconHamburger size={24} />
+          </button>
+
           <Link to="/home">
             <img
               src="/svgs/brand-logos/logo-flowbee-secondary.svg"
@@ -27,36 +37,55 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* Search Bar - center aligned */}
-        <div className="flex-1 max-w-[600px] mx-6">
+        {/* Center: Search (Desktop only) */}
+        <div className="hidden md:block flex-1 max-w-[600px] mx-6">
           <SearchBar
-            isSearchExpanded={isSearchExpanded}
-            setIsSearchExpanded={setIsSearchExpanded}
+            isSearchExpanded
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            placeholder="Search for products..."
+            className="px-10 py-2 h-10 border border-[#EFE9FF] rounded-lg shadow-sm text-sm text-gray-800"
           />
         </div>
 
-        {/* Right Icons */}
-        <div className="flex items-center gap-5 text-gray-700">
+        {/* Right: Icons (Desktop only) */}
+        <div className="hidden md:flex items-center gap-5 text-gray-700">
           <Link to="#">
-            <span className=" cursor-pointer">
-              <IconFavorites size="24" />
-            </span>
+            <IconFavorites size={24} />
           </Link>
           <Link to="/home/cart">
-            <span className=" cursor-pointer">
-              <IconShoppingCart size="24" />
-            </span>
+            <IconShoppingCart size={24} />
           </Link>
-
           <Link to="/home/settings">
-            <span className=" cursor-pointer">
-              <IconUser size="24" />
-            </span>
+            <IconUser size={24} />
           </Link>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden px-4 py-4 bg-gray-50 border-t space-y-4">
+          <SearchBar
+            isSearchExpanded
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            placeholder="Search for products..."
+            className="w-full px-4 py-2 border border-[#EFE9FF] rounded-lg shadow-sm text-sm text-gray-800"
+          />
+
+          <div className="flex items-center gap-6 text-gray-700">
+            <Link to="#">
+              <IconFavorites size={24} />
+            </Link>
+            <Link to="/home/cart">
+              <IconShoppingCart size={24} />
+            </Link>
+            <Link to="/home/settings">
+              <IconUser size={24} />
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
