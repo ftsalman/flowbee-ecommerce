@@ -19,16 +19,16 @@ export const Promobar = () => {
   return (
     <div
       ref={promoRef}
-      className="flex h-[96px] md:h-[40px] bg-[#030712] text-white justify-between items-center px-4 transition-all duration-500 ease-in-out transform "
+      className="flex h-[5rem] md:h-[40px] bg-[#030712] text-white justify-between items-center px-4 transition-all duration-500 ease-in-out transform "
     >
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2.5 md:gap-1 w-full">
-        <span className="flex items-center justify-center gap-2 text-sm">
+      <div className="flex flex-col  md:flex-row md:items-center justify-center gap-2.5 md:gap-1 w-full">
+        <span className="flex md:items-center md:justify-center gap-2 text-sm">
           <IconTicket /> 30% off storewide — Limited time!
         </span>
         <Link to="/">
           <Button
             variant="outline"
-            className="text-yellow-500 cursor-pointer underline hover:text-yellow-300 px-2 py-0 text-sm h-auto"
+            className="text-yellow-500  cursor-pointer underline hover:text-yellow-300 px-2 py-0 text-sm h-auto"
           >
             Shop Now →
           </Button>
