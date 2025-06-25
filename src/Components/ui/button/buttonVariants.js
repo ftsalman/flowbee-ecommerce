@@ -2,7 +2,7 @@ import React from 'react'
 import {cva} from 'class-variance-authority'
 
 export const buttonVariants = cva(
-     "text-sm font-medium rounded-lg flex items-center justify-center gap-2 border border-transparent transiton-colors duration-300 disabled:cursor-not-allowed outline-0",
+     "text-sm font-medium rounded-lg flex  cursor-pointer items-center justify-center gap-2 border border-transparent transiton-colors duration-300 disabled:cursor-not-allowed outline-0",
   {
     variants: {
       variant: {
