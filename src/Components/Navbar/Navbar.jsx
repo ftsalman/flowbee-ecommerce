@@ -18,13 +18,7 @@ export const Navbar = () => {
       <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-[64px] flex items-center justify-between gap-4">
         {/* Left: Logo + Hamburger (Mobile only) */}
         <div className="flex items-center gap-3">
-          <button
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle Menu"
-          >
-            <IconHamburger size={24} />
-          </button>
+         
 
           <Link to="/home">
             <img
@@ -44,12 +38,12 @@ export const Navbar = () => {
             searchValue={searchValue}
             setSearchValue={setSearchValue}
             placeholder="Search for products..."
-            className="px-10 py-2 h-10 border border-[#EFE9FF] rounded-lg shadow-sm text-sm text-gray-800"
+            className="px-10 py-2 h-10 border border-[#EFE9FF]  rounded-lg shadow-sm text-sm text-gray-800"
           />
         </div>
 
         {/* Right: Icons (Desktop only) */}
-        <div className="hidden md:flex items-center gap-5 text-gray-700">
+        <div className="flex items-center gap-5 text-gray-700">
           <Link to="#">
             <IconFavorites size={24} />
           </Link>
@@ -63,7 +57,7 @@ export const Navbar = () => {
       </div>
 
       {/* Mobile Dropdown */}
-      {mobileMenuOpen && (
+      {/* {mobileMenuOpen && (
         <div className="md:hidden px-4 py-4 bg-gray-50 border-t space-y-4">
           <SearchBar
             isSearchExpanded
@@ -85,7 +79,7 @@ export const Navbar = () => {
             </Link>
           </div>
         </div>
-      )}
+      )} */}
     </nav>
   );
 };
