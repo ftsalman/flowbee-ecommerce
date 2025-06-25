@@ -27,7 +27,7 @@ export const Categories = ({ data = {}, isLoading = false }) => {
             data={data}
             render={(item) => (
               <Link
-               to={`/category/${slugify(item.label)}`}
+               to={`/home/category/${slugify(item.label)}`}
                 key={item.id}
                 className="group p-4 cursor-pointer hover:scale-105 transition duration-500 flex flex-col items-center"
               >
