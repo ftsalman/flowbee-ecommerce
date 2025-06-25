@@ -4,12 +4,23 @@ import { Button } from "./button/Button";
 import { Link } from "react-router-dom";
 import { Card } from "./Card";
 import { IconFavorites } from "../../assets/icons/InterfaceIcons";
+import { cn } from "../../utils/utils";
 
-export const ProductCard = ({ data = {}, loading = false }) => {
+export const ProductCard = ({
+  data = {},
+  loading = false,
+  className = "",
+  ImageClass,
+}) => {
   if (loading) return <SkeletonProductCard />;
   return (
     <CardContainer className="h-fit space-y-2 px-4 sm:px-8 md:px-1 bg-transparent">
-      <Card className="relative w-60 flex flex-col items-center p-4 bg-[#F7F7F7]">
+      <Card
+        className={cn(
+          "relative w-60 flex flex-col items-center p-4 bg-[#F7F7F7]",
+          className
+        )}
+      >
         <Button
           variant="outline"
           onClick={() => onWishlistClick?.(data)}
@@ -22,7 +33,10 @@ export const ProductCard = ({ data = {}, loading = false }) => {
           <img
             src={data.img}
             alt={data.label}
-            className="w-full h-44 mt-2 mb-2 object-contain hover:scale-105 transition-transform duration-300"
+            className={cn(
+              "w-full h-44 mt-2 mb-2 object-contain hover:scale-105 transition-transform duration-300",
+              ImageClass
+            )}
             loading="lazy"
           />
         </Link>

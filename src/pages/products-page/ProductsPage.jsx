@@ -190,13 +190,13 @@ export const ProductsPage = () => {
       <Breadcrumbs />
 
       <div className="w-full flex gap-4 panel-scrollbar overflow-x-hidden">
-        <FilterPanelContainer>
+        <FilterPanelContainer className="bg-red-600 w-[11rem]">
           <FilterSidebar onFilterChange={handleFilterChange} />
         </FilterPanelContainer>
 
-        <div className="flex-grow min-w-0 flex flex-col px-3 py-4 panel-scrollbar overflow-y-auto">
+        <div className="flex-grow min-w-0 flex px-0 flex-col md:px-3 py-4 panel-scrollbar overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
-            <h4 className="flex items-center gap-2 text-md text-[#6C6C6C] font-semibold">
+            <h4 className="flex items-center text-xs  gap-2 md:text-md  text-[#6C6C6C] font-semibold">
               Selected Products:
               <span className="text-black font-semibold">
                 {filteredProducts.length}
@@ -206,7 +206,7 @@ export const ProductsPage = () => {
             <Button
               variant="secondary"
               size="md"
-              className="flex items-center gap-2 px-6 py-2 text-sm cursor-pointer"
+              className=" hidden md:block  items-center  gap-2 px-6 py-2 text-sm cursor-pointer"
             >
               By rating <IconArrowDown />
             </Button>
@@ -219,11 +219,16 @@ export const ProductsPage = () => {
           ) : (
             <>
               <List
-                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 w-full px-4"
+                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 w-full px-0 md:px-4"
                 data={paginatedProducts}
                 uniqueKey="id"
                 render={(item) => (
-                  <ProductCard data={item} loading={isLoading} />
+                  <ProductCard 
+                  data={item} 
+                  loading={isLoading} 
+                   className=" w-[10rem]"
+                   
+                   />
                 )}
               />
 
