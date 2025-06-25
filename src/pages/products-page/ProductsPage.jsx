@@ -92,7 +92,7 @@ const initialProducts = {
       price: 749,
       memory: "256GB",
       img: "https://i.pinimg.com/736x/4a/fc/cb/4afccb74aed5bd8d45aebee7bbb5b460.jpg",
-    }
+    },
   ],
   appliances: [
     {
@@ -190,13 +190,13 @@ export const ProductsPage = () => {
       <Breadcrumbs />
 
       <div className="w-full flex gap-4 panel-scrollbar overflow-x-hidden">
-        <FilterPanelContainer>
+        <FilterPanelContainer className=" max-w-[10.5rem] md:max-w-[40rem]">
           <FilterSidebar onFilterChange={handleFilterChange} />
         </FilterPanelContainer>
 
         <div className="flex-grow min-w-0 flex flex-col px-3 py-4 panel-scrollbar overflow-y-auto">
-          <div className="flex items-center justify-between mb-4">
-            <h4 className="flex items-center gap-2 text-md text-[#6C6C6C] font-semibold">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
+            <h4 className="flex flex-wrap items-center gap-2 text-sm md:text-base text-gray-500 font-semibold">
               Selected Products:
               <span className="text-black font-semibold">
                 {filteredProducts.length}
@@ -206,7 +206,7 @@ export const ProductsPage = () => {
             <Button
               variant="secondary"
               size="md"
-              className="flex items-center gap-2 px-6 py-2 text-sm cursor-pointer"
+              className="flex items-center gap-2 px-4 md:px-6 py-2 text-sm md:text-base"
             >
               By rating <IconArrowDown />
             </Button>
@@ -219,11 +219,15 @@ export const ProductsPage = () => {
           ) : (
             <>
               <List
-                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 w-full px-4"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 w-full px-0 md:px-4"
                 data={paginatedProducts}
                 uniqueKey="id"
                 render={(item) => (
-                  <ProductCard data={item} loading={isLoading} />
+                  <ProductCard
+                    data={item}
+                    loading={isLoading}
+                    className="max-w-[11.5rem] md:max-w-3xl"
+                  />
                 )}
               />
 
