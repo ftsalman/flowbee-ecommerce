@@ -9,11 +9,11 @@ export const ProductCard = ({ data = {}, loading = false }) => {
   if (loading) return <SkeletonProductCard />;
   return (
     <CardContainer className="h-fit space-y-2 px-4 sm:px-8 md:px-1 bg-transparent">
-      <Card className="relative w-60 flex flex-col items-center p-6 bg-[#F7F7F7]">
+      <Card className="relative w-60 flex flex-col items-center p-4 bg-[#F7F7F7]">
         <Button
           variant="outline"
           onClick={() => onWishlistClick?.(data)}
-          className="absolute  cursor-pointer top-0 right-0 text-gray-400 hover:text-red-500"
+          className="absolute cursor-pointer top-0 right-0 text-gray-400 hover:text-red-500"
         >
           <IconFavorites size="24" />
         </Button>

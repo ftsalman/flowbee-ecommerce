@@ -3,13 +3,19 @@ import { SearchBar } from "../../ui/SearchBar";
 import { List } from "../../ui/List";
 import { cn } from "../../../utils/utils";
 
-export const Brand = ({ data = [], loading = false, onChange }) => {
+export const Brand = ({
+  data = [],
+  loading = false,
+  onChange,
+  selected = [],
+}) => {
   const [searchValue, setSearchValue] = useState("");
-  const [selected, setSelected] = useState([]);
 
   const filtered = useMemo(
     () =>
-      data.filter((b) => b.name.toLowerCase().includes(searchValue.toLowerCase())),
+      data.filter((b) =>
+        b.name.toLowerCase().includes(searchValue.toLowerCase())
+      ),
     [data, searchValue]
   );
 
@@ -17,8 +23,8 @@ export const Brand = ({ data = [], loading = false, onChange }) => {
     const next = selected.includes(name)
       ? selected.filter((b) => b !== name)
       : [...selected, name];
-    setSelected(next);
-    onChange?.(next);
+
+    onChange?.(next); 
   };
 
   return (

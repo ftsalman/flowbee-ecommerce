@@ -5,15 +5,15 @@ import { Brand } from "../brand-slidebar/Brand";
 import { BuiltMemory } from "../built-memory/BuiltMemory";
 
 const allBrands = [
-  { name: "Apple", count: 110 },
-  { name: "Samsung", count: 125 },
-  { name: "Xiaomi", count: 68 },
-  { name: "Poco", count: 44 },
-  { name: "OPPO", count: 36 },
-  { name: "Honor", count: 10 },
-  { name: "Motorola", count: 34 },
-  { name: "Nokia", count: 22 },
-  { name: "Realme", count: 35 },
+  { name: "Apple", count: 110, img: "/images/brands/apple.png" },
+  { name: "Samsung", count: 125, img: "/images/brands/samsung.png" },
+  { name: "Xiaomi", count: 68, img: "/images/brands/xiaomi.png" },
+  { name: "Poco", count: 44, img: "/images/brands/poco.png" },
+  { name: "OPPO", count: 36, img: "/images/brands/oppo.png" },
+  { name: "Honor", count: 10, img: "/images/brands/honor.png" },
+  { name: "Motorola", count: 34, img: "/images/brands/motorola.png" },
+  { name: "Nokia", count: 22, img: "/images/brands/nokia.png" },
+  { name: "Realme", count: 35, img: "/images/brands/realme.png" },
 ];
 
 const BUILT_MEMORY = [
@@ -25,96 +25,108 @@ const BUILT_MEMORY = [
   { name: "512GB", count: 8 },
 ];
 
-export const FilterSidebar = ({ onChange }) => {
-  // States
+export const FilterSidebar = ({ onFilterChange }) => {
   const [priceOpen, setPriceOpen] = useState(true);
   const [brandOpen, setBrandOpen] = useState(true);
   const [builtMemoryOpen, setBuiltMemoryOpen] = useState(true);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-  const [brandsData, setBrandsData] = useState(allBrands);
-  const [builtMemoryData, SetBuiiltMemoryData] = useState(BUILT_MEMORY);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedMemory, setSelectedMemory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // UseEffect
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
-
+    }, 1000);
     return () => clearTimeout(timeout);
   }, []);
 
   const handlePriceChange = (min, max) => {
     setPriceRange([min, max]);
-    if (onChange) {
-      onChange({ priceRange: [min, max] });
-    }
+    onFilterChange?.({
+      price: [min, max],
+      brands: selectedBrands,
+      memory: selectedMemory,
+    });
   };
 
+  const handleBrandToggle = (brands) => {
+    setSelectedBrands(brands);
+    onFilterChange?.({
+      price: priceRange,
+      brands,
+      memory: selectedMemory,
+    });
+  };
+
+  const handleMemoryToggle = (memory) => {
+    setSelectedMemory(memory);
+    onFilterChange?.({
+      price: priceRange,
+      brands: selectedBrands,
+      memory,
+    });
+  };
+  //   fliter clear
+  // const clearFilters = () => {
+  //   setSelectedBrands([]);
+  //   setSelectedMemory([]);
+  //   setPriceRange([0, 2000]);
+  //   onFilterChange?.({
+  //     price: [0, 2000],
+  //     brands: [],
+  //     memory: [],
+  //   });
+  // };
+
   return (
-    <div className="w-full max-w-[250px] ">
+    <div className="w-full max-w-[250px]">
       <div className="space-y-2">
         <SectionHeader
           head="Price"
           onClickDropdown={() => setPriceOpen(!priceOpen)}
           isOpen={priceOpen}
         />
-
         {priceOpen && (
-          <div className=" px-4">
-            <PriceRange />
+          <div className="px-4">
+            <PriceRange onChange={handlePriceChange} />
           </div>
         )}
 
-        <div className=" space-y-2">
-          <SectionHeader
-            head="Brand"
-            onClickDropdown={() => setBrandOpen(!brandOpen)}
-            isOpen={brandOpen}
+        <SectionHeader
+          head="Brand"
+          onClickDropdown={() => setBrandOpen(!brandOpen)}
+          isOpen={brandOpen}
+        />
+        {brandOpen && (
+          <Brand
+            data={allBrands}
+            loading={isLoading}
+            onChange={handleBrandToggle}
+            selected={selectedBrands}
           />
+        )}
 
-          {brandOpen && (
-            <Brand
-              data={brandsData}
-              loading={isLoading}
-              onChange={console.log("clicked")}
-            />
-          )}
-        </div>
-
-        <div className=" space-y-2">
-          <SectionHeader
-            head="Built-in memory"
-            onClickDropdown={() => setBuiltMemoryOpen(!builtMemoryOpen)}
-            isOpen={builtMemoryOpen}
+        <SectionHeader
+          head="Built-in memory"
+          onClickDropdown={() => setBuiltMemoryOpen(!builtMemoryOpen)}
+          isOpen={builtMemoryOpen}
+        />
+        {builtMemoryOpen && (
+          <BuiltMemory
+            data={BUILT_MEMORY}
+            loading={isLoading}
+            onChange={handleMemoryToggle}
+            selected={selectedMemory}
           />
-          {builtMemoryOpen && (
-            <BuiltMemory
-              loading={isLoading}
-              data={builtMemoryData}
-              onChange={console.log("clicked")}
-            />
-          )}
-        </div>
+        )}
 
-        <div>
-          <SectionHeader head="Protection class" />
-        </div>
+        <SectionHeader head="Protection class" />
 
-        <div>
-          <SectionHeader head="Screen diagonal" />
-        </div>
+        <SectionHeader head="Screen diagonal" />
 
-        <div>
-          <SectionHeader head="Screen type" />
-        
-        </div>
-
-        <div>
-          <SectionHeader head="Battery capacity" />
-        </div>
-
+        <SectionHeader head="Screen type" />
+        <SectionHeader head="Battery capacity" />
       </div>
     </div>
   );

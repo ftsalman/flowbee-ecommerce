@@ -13,7 +13,7 @@ import CartPage from "../pages/CartPage";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/auth/login" replace={true} />, // redirect to login
+    element: <Navigate to="/auth/login" replace={true} />,
   },
   {
     path: "auth",
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
 
   {
     path: "/home",
-    element: <HomeLayout />, // Layout here
+    element: <HomeLayout />,
     children: [
       {
         index: true,
@@ -50,23 +50,23 @@ export const router = createBrowserRouter([
         element: <ProductViewPage />,
       },
       {
-        path: "ProductsPage/:id",
-        element: <ProductsPage />,
-      },
-      {
         path: "settings",
         element: <SettingsPage />,
       },
       {
         path: "orders",
-
         element: <OrdersHistoryPage />,
       },
-       {
+      {
         path: "cart",
-
-        element: <CartPage />,
+        element: <CartPage/>,
       },
     ],
+  },
+
+
+  {
+    path: "/category/:categorySlug",
+    element: <ProductsPage />,
   },
 ]);

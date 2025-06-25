@@ -3,6 +3,10 @@ import { List } from "../ui/List";
 import { Link } from "react-router-dom";
 
 export const Categories = ({ data = {}, isLoading = false }) => {
+
+
+  const slugify = (text) =>
+  text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
   return (
     <section className="flex flex-col gap-6 py-12 px-10 md:px-20">
       <h2 className="text-2xl md:text-4xl font-semibold text-center">
@@ -23,7 +27,7 @@ export const Categories = ({ data = {}, isLoading = false }) => {
             data={data}
             render={(item) => (
               <Link
-               to={`ProductsPage/${item.id}`}
+               to={`/category/${slugify(item.label)}`}
                 key={item.id}
                 className="group p-4 cursor-pointer hover:scale-105 transition duration-500 flex flex-col items-center"
               >
