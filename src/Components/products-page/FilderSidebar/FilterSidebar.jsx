@@ -122,9 +122,7 @@ export const FilterSidebar = ({ onFilterChange }) => {
         )}
 
         <SectionHeader head="Protection class" />
-
         <SectionHeader head="Screen diagonal" />
-
         <SectionHeader head="Screen type" />
         <SectionHeader head="Battery capacity" />
       </div>
