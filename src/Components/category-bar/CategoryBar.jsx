@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { List } from "../ui/List";
 import { CATEGORIES_DATA } from "../../constants/CategoriesDropdownData";
 import { CategoryList } from "./CategoryList";
-// import { IconMenu2 } from "@tabler/icons-react"; // or any hamburger icon
 import { CategoryItem } from "./CategoryItems";
-import { IconHamburger, IconUser } from "../../assets/icons/InterfaceIcons";
+import { IconHamburger } from "../../assets/icons/InterfaceIcons";
 
 export const CategoryBar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -14,30 +13,31 @@ export const CategoryBar = () => {
     CATEGORIES_DATA.find((c) => c.label === openDropdown) || null;
 
   return (
-    <nav className="relative z-10 bg-[#1E1E1E] border-t p-1 border-gray-700 text-white">
-      {/* ------ Desktop row (hidden on small) ------ */}
+    <nav className="relative z-50 bg-[#1E1E1E] border-t p-1 border-gray-700 text-white">
+      {/* ------ Desktop navigation and dropdown wrapper ------ */}
       <div
-        className="hidden md:flex items-center gap-px px-20"
+        className="hidden md:block"
         onMouseLeave={() => setOpenDropdown(null)}
       >
-        <List
-          data={CATEGORIES_DATA}
-          uniqueKey="id"
-          render={(item, idx) => (
-            <CategoryItem
-              key={item.id}
-              idx={idx}
-              {...item}
-              isActive={openDropdown === item.label}
-              onMouseEnter={() => setOpenDropdown(item.label)}
-            />
-          )}
-        />
-      </div>
+        {/* Top category row */}
+        <div className="flex items-center gap-px px-20">
+          <List
+            data={CATEGORIES_DATA}
+            uniqueKey="id"
+            render={(item, idx) => (
+              <CategoryItem
+                key={item.id}
+                idx={idx}
+                {...item}
+                isActive={openDropdown === item.label}
+                onMouseEnter={() => setOpenDropdown(item.label)}
+              />
+            )}
+          />
+        </div>
 
-      {/* ------ Mega‑menu (desktop only) ------ */}
-      <div className="hidden md:block">
-        <CategoryList openCategory={openCategory} />
+        {/* Dropdown panel shown when category is active */}
+        {openDropdown && <CategoryList openCategory={openCategory} />}
       </div>
 
       {/* ------ Mobile bar ------ */}
@@ -52,7 +52,7 @@ export const CategoryBar = () => {
         </button>
       </div>
 
-      {/* ------ Mobile dropdown (simple list) ------ */}
+      {/* ------ Mobile dropdown list ------ */}
       {mobileOpen && (
         <ul className="md:hidden bg-neutral-900 divide-y divide-neutral-700">
           {CATEGORIES_DATA.map((cat) => (
