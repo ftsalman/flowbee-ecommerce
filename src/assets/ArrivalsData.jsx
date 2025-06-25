@@ -4,7 +4,7 @@ export const arrivals_data = [
     label: "Apple iPhone 14 Pro Max",
     price: "$299.99",
     images: [
-      "/images/products/img9.png",
+      "/images/products/img6.png",
       "https://i.pinimg.com/736x/93/08/9f/93089f446b578c1bef52269e154947c0.jpg",
       "https://i.pinimg.com/736x/82/c7/22/82c722a5a7485af85df82074dce9c895.jpg",
       "/images/products/img12.png",

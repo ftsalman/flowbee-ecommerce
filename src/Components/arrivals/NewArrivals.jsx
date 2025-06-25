@@ -172,13 +172,13 @@ const NewArrivals = () => {
               <Link to={`/home/products/${item.id}`}>
                 <Card
                   key={item.id}
-                  className="relative group min-w-[220px] rounded-md flex-shrink-0 border shadow-sm p-4"
+                  className="relative group min-w-[220px] bg-transparent  border-none  hover:shadow-none rounded-md flex-shrink-0 border shadow-sm p-4"
                 >
                   <div className="relative">
                     <img
                       src={item.images?.[0]}
                       alt={item.label}
-                      className="w-full h-45 object-contain mb-3"
+                      className="cursor-pointer hover:scale-105 duration-300 transition-transform object-contain w-full"
                     />
                     <span className="absolute top-3 left-2 bg-white text-black font-semibold text-[10px] px-3 py-0.5 rounded shadow">
                       NEW
@@ -202,7 +202,7 @@ const NewArrivals = () => {
                     </Link>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     <Link to={'/home'}>
                     <Button
                       variant="secondary"

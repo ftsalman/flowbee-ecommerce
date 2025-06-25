@@ -10,7 +10,7 @@ const initialProducts = [
     label: "Skullcandy - Crusher anc 2 wireless headphone",
     price: "$299.99",
     image: [
-      "/images/products/img9.png",
+      "/images/products/img6.png",
       "/images/products/img10.png",
       "/images/products/img11.png",
       "/images/products/img12.png",
