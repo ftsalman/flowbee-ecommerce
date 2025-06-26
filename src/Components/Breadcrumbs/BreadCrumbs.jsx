@@ -25,7 +25,7 @@ const Breadcrumbs = () => {
     return { label, link: path };
   });
 
-  const fullCrumbs = [{ label: "Home", link: "/" }, ...crumbs];
+  const fullCrumbs = [{ label: "Home", link: "/home" }, ...crumbs];
 
   return (
     <nav
