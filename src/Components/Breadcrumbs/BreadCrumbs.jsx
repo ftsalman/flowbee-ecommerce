@@ -1,32 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation, useParams, Link } from "react-router-dom";
+import { ShopContext } from "../../context/ShopContext";
 
-// Label overrides
 const LABEL_OVERRIDES = {
-  categories: "Categories",
-  smartphones: "Smartphones",
+  home: "Home",
+  products: "Products",
   "mobile-phones": "Mobile Phones",
-  apple: "Apple",
-  samsung: "Samsung",
+  categories: "Categories",
 };
 
-const formatLabel = (str) =>
-  str.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+const formatLabel = (segment) =>
+  segment.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 const Breadcrumbs = () => {
   const location = useLocation();
+  const { allProducts = [] } = useContext(ShopContext);
   const segments = location.pathname.split("/").filter(Boolean);
 
   const crumbs = segments.map((segment, index) => {
     const path = "/" + segments.slice(0, index + 1).join("/");
-    const label =
-      LABEL_OVERRIDES[segment.toLowerCase()] || formatLabel(segment);
+
+    // Handle product ID -> product name
+    const isLast = index === segments.length - 1;
+    const prevSegment = segments[index - 1];
+    const isProductId = prevSegment === "products";
+
+    let label = LABEL_OVERRIDES[segment.toLowerCase()] || formatLabel(segment);
+
+    if (isLast && isProductId) {
+      const product = allProducts.find((p) => String(p.id) === String(segment));
+      label = product?.label || segment;
+    }
 
     return { label, link: path };
   });
 
-  const fullCrumbs = [{ label: "Home", link: "/home" }, ...crumbs];
-
+  const fullCrumbs =
+    segments[0]?.toLowerCase() === "home"
+      ? crumbs
+      : [{ label: "Home", link: "/" }, ...crumbs];
   return (
     <nav
       className="bg-[#FFD833] border-b border-gray-300 py-4 px-4 sm:px-10 text-sm text-gray-800"
