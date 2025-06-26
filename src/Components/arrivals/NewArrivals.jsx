@@ -4,7 +4,7 @@ import { Card } from "../ui/Card";
 import { IconFavorites, IconStar } from "../../assets/icons/InterfaceIcons";
 import { Button } from "../ui/button/Button";
 import { Link } from "react-router-dom";
-import { arrivals_data } from "../../assets/ArrivalsData";
+import { allProducts } from "../../assets/all_product";
 // const initialProducts = [
 //   {
 //     id: 1,
@@ -74,7 +74,7 @@ const VISIBLE = 2;
 
 const NewArrivals = () => {
   const trackRef = useRef(null);
-  const [newArrivals] = useState(arrivals_data.slice(0, 6));
+  const [newArrivals] = useState(allProducts.slice(0, 6));
   const [favourites, setFavourites] = useState(new Set());
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);

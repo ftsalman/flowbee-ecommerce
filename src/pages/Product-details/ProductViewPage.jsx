@@ -7,11 +7,13 @@ import { ProductInfo } from "../../Components/product-view/product-info/ProductI
 import { ShopContext } from "../../context/ShopContext";
 
 const ProductViewPage = () => {
-  const { arrivals_data } = useContext(ShopContext);
+
+    const { allProducts } = useContext(ShopContext);
   const { productId } = useParams();
-  const product = arrivals_data.find((item) => item.id === Number(productId));
+  const product = allProducts.find((item) => item.id === Number(productId));
 
   if (!product) return <div className="p-10">Product not found.</div>;
+
   return (
     <div className="">
       <div className="sticky top-0 z-50 ">

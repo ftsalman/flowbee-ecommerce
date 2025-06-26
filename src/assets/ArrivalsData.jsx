@@ -1,8 +1,10 @@
-export const arrivals_data = [
+export const allProducts = [
   {
     id: 1,
     label: "Apple iPhone 14 Pro Max",
-    price: "$299.99",
+    brand: "Apple",
+    price: 299.99,
+    category: "mobile-phones",
     images: [
       "/images/products/img6.png",
       "https://i.pinimg.com/736x/93/08/9f/93089f446b578c1bef52269e154947c0.jpg",
@@ -10,11 +12,10 @@ export const arrivals_data = [
       "/images/products/img12.png",
     ],
     rating: 4,
-
     specs: {
       displaySize: "6.7 in OLED, 120 Hz",
       storage: "256 GB",
-      cpuCores: 6,                    
+      cpuCores: 6,
       mainCamera: "48 MP f/1.8 (wide) + 12 MP (ultra‑wide) + 12 MP (tele)",
       frontCamera: "12 MP f/1.9",
       batteryCapacity: "4323 mAh",
@@ -23,74 +24,36 @@ export const arrivals_data = [
   {
     id: 2,
     label: "Skullcandy - Crusher ANC 2 Wireless Headphone - Red",
-    price: "$289.99",
+    brand: "Skullcandy",
+    price: 289.99,
+    category: "headset",
     images: ["/images/products/img2.png", "/images/products/img3.png"],
     rating: 5,
   },
   {
     id: 3,
     label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
+    brand: "Skullcandy",
+    price: 279.99,
+    category: "headset",
     images: ["/images/products/img3.png", "/images/products/img1.png"],
     rating: 3,
   },
-  {
-    id: 4,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 5,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 6,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 7,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 8,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 9,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 10,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
-  {
-    id: 11,
-    label: "Skullcandy - Crusher ANC 2 Wireless Headphone - White",
-    price: "$279.99",
-    images: ["/images/products/img3.png", "/images/products/img1.png"],
-    rating: 3,
-  },
+  // ...more
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // utility – converts "Skullcandy - Crusher anc 2 wireless headphone"
 // // to "skullcandy-crusher-anc-2-wireless-headphone"
