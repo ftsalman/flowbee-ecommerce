@@ -21,9 +21,9 @@ const ProductViewPage = () => {
       </div>
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-6 space-y-4">
-        <ProductDisplay product={product} />
+        <ProductDisplay data={product} />
         <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 space-y-4">
-          <ProductInfo />
+          <ProductInfo  />
         </div>
 
         <CustomerReview />
