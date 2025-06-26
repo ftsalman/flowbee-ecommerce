@@ -110,20 +110,20 @@ export const ProductDisplay = ({ data = {}, onClick = {} }) => {
           onSelect={setSelectedStorage}
         />
 
-        <div className="flex flex-wrap gap-4 mt-6">
-          <Button
-            variant="secondary"
-            className="border border-black px-7 py-3 text-sm text-black"
-          >
-            Add to Wishlist
-          </Button>
-          <Button
-            variant="secondary"
-            className="bg-black px-10 py-3 text-sm text-white"
-          >
-            Add to Cart
-          </Button>
-        </div>
+  <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full">
+  <Button
+    variant="secondary"
+    className="border border-black px-6 py-3 text-sm text-black w-full sm:w-auto"
+  >
+    Add to Wishlist
+  </Button>
+  <Button
+    variant="secondary"
+    className="bg-black px-6 py-3 text-sm text-white w-full sm:w-auto"
+  >
+    Add to Cart
+  </Button>
+</div>
 
         <div className="mt-8">
           <ProductSpecs specs={formattedSpecs} />
