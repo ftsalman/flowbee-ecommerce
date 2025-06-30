@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { useLocation, useParams, Link } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
-
 const LABEL_OVERRIDES = {
-  home: "Home",
-  products: "Products",
+  "": "Home",
+  "home": "Home",
+  "categories": "Categories",
   "mobile-phones": "Mobile Phones",
-  categories: "Categories",
+  "my-account": "My Account",
+  "order-history": "Order History",
+  "orders": "Orders",
+  "products": "Products",
 };
 
 const formatLabel = (segment) =>
