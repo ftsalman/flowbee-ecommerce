@@ -13,29 +13,29 @@ import CartPage from "../pages/CartPage";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/auth/login" replace={true} />,
+    element: <Navigate to="/home" replace={true} />,
   },
-  {
-    path: "auth",
-    children: [
-      {
-        path: "login",
-        element: (
-          <AuthLayout>
-            <LoginPage />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "signup",
-        element: (
-          <AuthLayout>
-            <SignupPage />
-          </AuthLayout>
-        ),
-      },
-    ],
-  },
+  // {
+  //   path: "auth",
+  //   children: [
+  //     {
+  //       path: "login",
+  //       element: (
+  //         <AuthLayout>
+  //           <LoginPage />
+  //         </AuthLayout>
+  //       ),
+  //     },
+  //     {
+  //       path: "signup",
+  //       element: (
+  //         <AuthLayout>
+  //           <SignupPage />
+  //         </AuthLayout>
+  //       ),
+  //     },
+  //   ],
+  // },
 
   {
     path: "/home",

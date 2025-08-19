@@ -1,46 +1,150 @@
+// import React from "react";
+// import { List } from "../ui/List";
+// import { Link } from "react-router-dom";
+// import { Card } from "../ui/Card";
+
+// export const Categories = ({ data = [], isLoading = false }) => {
+//   const slugify = (text) =>
+//     text
+//       .toLowerCase()
+//       .replace(/\s+/g, "-")
+//       .replace(/[^\w-]/g, "");
+
+//   return (
+//     // <section className="flex flex-col gap-6 py-12 px-10 md:px-20">
+//     //   <h2 className="text-2xl md:text-4xl font-semibold text-center">
+//     //     Popular Categories
+//     //   </h2>
+
+//     //   <div className="space-y-2">
+//     //     {isLoading ? (
+//     //       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+//     //         {Array.from({ length: 8 }).map((_, idx) => (
+//     //           <SkeletonCard key={idx} />
+//     //         ))}
+//     //       </div>
+//     //     ) : (
+//     //       <List
+//     //         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full max-w-6xl mx-auto"
+//     //         uniqueKey="id"
+//     //         data={data}
+//     //         render={(item) => (
+//     //           <Link
+//     //             to={`/home/category/${slugify(item.label)}`}
+//     //             key={item.id}
+//     //             className="group cursor-pointer"
+//     //           >
+//     //             <Card
+//     //               className="flex p-0 flex-col items-center justify-center bg-white rounded-lg hover:scale-105  shadow-sm transition-all duration-300 hover:shadow-md"
+//     //                style={{ backgroundColor: item.bgColor || "#fef3c7" }}
+//     //             >
+//     //               <div className="flex flex-col items-center justify-center w-full h-32 p-4">
+//     //                 <img
+//     //                   src={item.image}
+//     //                   alt={item.label}
+//     //                   className="w-30 h-30 object-contain mb-2"
+//     //                 />
+//     //                 <p className="text-sm font-medium text-gray-800 text-center">
+//     //                   {item.label}
+//     //                 </p>
+//     //               </div>
+//     //             </Card>
+//     //           </Link>
+//     //         )}
+//     //       />
+//     //     )}
+//     //   </div>
+//     // </section>
+
+//     <>
+//       <div className="mt-16">
+//         <h2 className="text-2xl md:text-4xl font-semibold text-center mb-8">
+//           Popular Categories
+//         </h2>
+//         <div className="px-4">
+//           <List
+//             data={data}
+//             uniqueKey="id"
+//             render={(item) => (
+//               <>
+//                 <div
+//                   key={item.id}
+//                   className="group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center"
+//                   style={{ backgroundColor: item.bgColor || "#fef3c7" }}
+//                 >
+//                   <img
+//                     src={item.image}
+//                     alt={item.label}
+//                     className=" group-hover:scale-105 transition max-w-full"
+//                   />
+//                   <p className=" text-sm font-medium">{item.label}</p>
+//                 </div>
+//               </>
+//             )}
+//           />
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// // Skeleton loader
+// const SkeletonCard = () => (
+//   <div className="flex flex-col items-center space-y-3 animate-pulse p-4">
+//     <div className="w-12 h-12 bg-gray-200 rounded-full" />
+//     <div className="w-3/4 h-3 bg-gray-300 rounded" />
+//   </div>
+// );
+
+
+
 import React from "react";
 import { List } from "../ui/List";
 import { Link } from "react-router-dom";
+import { Card } from "../ui/Card";
 
-export const Categories = ({ data = {}, isLoading = false }) => {
-
-
+export const Categories = ({ data = [], isLoading = false }) => {
   const slugify = (text) =>
-  text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+    text
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "");
+
   return (
-    <section className="flex flex-col gap-6 py-12 px-10 md:px-20">
-      <h2 className="text-2xl md:text-4xl font-semibold text-center">
-        Shop by Categories
+    <section className="mt-16">
+      <h2 className="text-2xl md:text-4xl font-semibold text-center mb-8">
+        Popular Categories
       </h2>
 
-      <div className=" space-y-2">
+      <div className="px-4">
         {isLoading ? (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {Array.from({ length: 8 }).map((_, idx) => (
               <SkeletonCard key={idx} />
             ))}
           </div>
         ) : (
           <List
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-6xl mx-auto"
-            uniqueKey="id"
             data={data}
+            uniqueKey="id"
             render={(item) => (
               <Link
-               to={`/home/category/${slugify(item.label)}`}
+                // to={`/home/category/${slugify(item.label)}`}
                 key={item.id}
-                className="group p-4 cursor-pointer hover:scale-105 transition duration-500 flex flex-col items-center"
+                className="group cursor-pointer"
               >
-                <img
-                  src={item.image_url}
-                  onError={(e) => (e.target.src = "/images/fallback.png")}
-                  alt={item.label}
-                  className="w-[400px] h-40 object-contain"
-                />
-                <span className="mt-4 text-sm font-medium text-gray-800">
-                  {item.label}
-                </span>
-           </Link>
+                <div
+                  className="group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center"
+                  style={{ backgroundColor: item.bgColor || "#fef3c7" }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.label}
+                    className="group-hover:scale-105 transition max-w-full"
+                  />
+                  <p className="text-sm font-medium">{item.label}</p>
+                </div>
+              </Link>
             )}
           />
         )}
@@ -51,13 +155,13 @@ export const Categories = ({ data = {}, isLoading = false }) => {
 
 // Skeleton loader
 const SkeletonCard = () => (
-  <div className="flex flex-col items-center space-y-4 animate-pulse p-4">
-    <div className="w-full h-40 bg-gray-200 rounded" />
-    <div className="w-2/3 h-4 bg-gray-300 rounded" />
+  <div className="flex flex-col border-2  border-gray-200 items-center justify-center gap-3 p-4 rounded-lg bg-gray-50 animate-pulse">
+    <div className="w-16 h-16 bg-gray-200 rounded-full" />
+    <div className="w-20 h-3 bg-gray-300 rounded" />
   </div>
 );
 
 
 
 
-      
+
