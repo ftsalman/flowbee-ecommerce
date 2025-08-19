@@ -1,54 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { List } from "../ui/List";
+import { Card } from "../ui/Card";
+import { Button } from "../ui/button/Button";
+import { IconArrowRight } from "../../assets/icons/InterfaceIcons";
 
 export const ProductSection = () => {
+  const [loading, setLoading] = useState(true);
+
   const productSections = [
     {
       title: "Everyday Fresh & Clean with Our Products",
       buttonText: "Shop Now",
-      image: "https://cdn-icons-png.flaticon.com/512/415/415682.png", // onion placeholder
+      image: "/images/products/onion.png",
       bgColor: "bg-yellow-50",
     },
     {
       title: "Make your Breakfast Healthy and Easy",
       buttonText: "Shop Now",
-      image: "https://cdn-icons-png.flaticon.com/512/1046/1046784.png", // milk bottle
-      bgColor: "bg-pink-50",
+      image: "/images/products/Milk.png",
+      bgColor: " bg-[#c0f1ba]",
     },
     {
       title: "The best Organic Products Online",
       buttonText: "Shop Now",
-      image: "https://cdn-icons-png.flaticon.com/512/415/415733.png", // basket
+      image: "/images/products/Veg-img.png",
       bgColor: "bg-blue-50",
     },
   ];
 
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-12 py-10">
-      {productSections.map((item, index) => (
-        <div
-          key={index}
-          className={`flex items-center justify-between rounded-xl p-6 ${item.bgColor}`}
-        >
-          {/* Text */}
-          <div className="max-w-[60%]">
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">
-              {item.title}
-            </h3>
-            <button className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-400 transition">
-              {item.buttonText} →
-            </button>
-          </div>
+  // Simulate loading for demo
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
-          {/* Image */}
-          <div className="w-28 h-28 flex-shrink-0">
-            <img
-              src={item.image}
-              alt="Product"
-              className="object-contain w-full h-full"
-            />
-          </div>
+  return (
+    <div className="p-4">
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div
+              key={i}
+              className="rounded-xl p-7 bg-gray-100 animate-pulse flex justify-between items-center"
+            >
+              <div className="flex-1 space-y-3">
+                <div className="h-4 w-2/3 bg-gray-300 rounded"></div>
+                <div className="h-8 w-24 bg-gray-300 rounded"></div>
+              </div>
+              <div className="w-28 h-28 bg-gray-300 "></div>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : (
+        <List
+          uniqueKey="title"
+          data={productSections}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+          render={(item) => (
+            <Card
+              className={` relative flex items-center justify-between p-7 rounded-xl ${item.bgColor}`}
+            >
+              {/* text */}
+              <div className="max-w-[60%]">
+                <h3 className="text-md font-semibold text-gray-800 mb-3">
+                  {item.title}
+                </h3>
+
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="bg-yellow-400 text-white hover:bg-yellow-500 transition flex items-center gap-1"
+                >
+                  {item.buttonText}
+                  <IconArrowRight size="18" color="#fff" />
+                </Button>
+              </div>
+
+              {/* Image */}
+              <div className=" absolute right-0 bottom-[-9px] w-36 h-36 flex-shrink-0 flex items-end justify-end">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className=" object-contain  w-full h-full"
+                />
+              </div>
+            </Card>
+          )}
+        />
+      )}
     </div>
   );
 };

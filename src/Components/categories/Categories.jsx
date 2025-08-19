@@ -96,14 +96,19 @@
 //   </div>
 // );
 
-
-
 import React from "react";
 import { List } from "../ui/List";
 import { Link } from "react-router-dom";
 import { Card } from "../ui/Card";
+import { assets, categories } from "../../../public/images/grocery/assets";
+import { SectionHeader } from "../ui/SectionHeader";
 
 export const Categories = ({ data = [], isLoading = false }) => {
+  const handleCategoryClick = (categoryText) => {
+    navigate(`/home/category/${slugify(categoryText)}`);
+    window.scrollTo(0, 0);
+  };
+
   const slugify = (text) =>
     text
       .toLowerCase()
@@ -111,38 +116,42 @@ export const Categories = ({ data = [], isLoading = false }) => {
       .replace(/[^\w-]/g, "");
 
   return (
-    <section className="mt-16">
-      <h2 className="text-2xl md:text-4xl font-semibold text-center mb-8">
-        Popular Categories
-      </h2>
+    <section className="mt-16 px-7">
+      <div>
+        <SectionHeader header=" Popular Categories" />
+      </div>
 
       <div className="px-4">
         {isLoading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {Array.from({ length: 8 }).map((_, idx) => (
+            {Array.from({ length: 12 }).map((_, idx) => (
               <SkeletonCard key={idx} />
             ))}
           </div>
         ) : (
           <List
-            data={data}
+            className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4"
+            data={categories}
             uniqueKey="id"
             render={(item) => (
               <Link
-                // to={`/home/category/${slugify(item.label)}`}
                 key={item.id}
                 className="group cursor-pointer"
+                onClick={() => handleCategoryClick(item.text)}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && handleCategoryClick(item.text)
+                }
               >
                 <div
-                  className="group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center"
+                  className="group cursor-pointer  py-2 px-2 gap-2 rounded-lg flex flex-col justify-center items-center"
                   style={{ backgroundColor: item.bgColor || "#fef3c7" }}
                 >
                   <img
                     src={item.image}
-                    alt={item.label}
-                    className="group-hover:scale-105 transition max-w-full"
+                    alt={item.text}
+                    className="group-hover:scale-105 transition max-w-full h-24 object-contain mb-2"
                   />
-                  <p className="text-sm font-medium">{item.label}</p>
+                  <p className="text-sm font-medium">{item.text}</p>
                 </div>
               </Link>
             )}
@@ -160,8 +169,3 @@ const SkeletonCard = () => (
     <div className="w-20 h-3 bg-gray-300 rounded" />
   </div>
 );
-
-
-
-
-

@@ -143,6 +143,12 @@ export const categories = [
     image: grain_image,
     bgColor: "#F1E3F9",
   },
+  {
+    text: "Organic",
+    path: "Organic",
+    image: orange_image,
+    bgColor: "#FFA53F",
+  },
 ];
 
 export const footerLinks = [
@@ -200,6 +206,109 @@ export const features = [
   },
 ];
 
+export const DummyBestSellers = [
+  {
+    id: 1,
+    name: "Organic Apples",
+    category: "Fruits",
+    image: "/images/grocery/apple_image.png",
+    price: 5.0,
+    offerPrice: 3.5,
+    rating: 4,
+    tag: "New",
+  },
+  {
+    id: 2,
+    name: "Fresh Carrots",
+    category: "Vegetables",
+    image: "/images/grocery/carrot_image.png",
+    price: 4.0,
+    offerPrice: 2.5,
+    rating: 5,
+    tag: "Hot Seller",
+  },
+  {
+    id: 3,
+    name: "Whole Wheat Bread",
+    category: "Bakery",
+    image: "/images/grocery/whole_wheat_bread_image.png",
+    price: 2.5,
+    offerPrice: 1.8,
+    rating: 4,
+    tag: "Raw Green",
+  },
+  {
+    id: 4,
+    name: "1L Fresh Milk",
+    category: "Dairy",
+    image: "/images/grocery/amul_milk_image.png",
+    price: 3.0,
+    offerPrice: 2.2,
+    rating: 3,
+    tag: "Top Green",
+  },
+  {
+    id: 5,
+    name: "Brown Eggs (12 pcs)",
+    category: "Dairy",
+    image: "/images/grocery/eggs_image.png",
+    price: 4.5,
+    offerPrice: 3.5,
+    rating: 5,
+    tag: "Hot Seller",
+  },
+  {
+    id: 6,
+    name: "Orange Juice 1L",
+    category: "Beverages",
+    image: "/images/grocery/orange_juice_image.png",
+    price: 3.8,
+    offerPrice: 2.9,
+    rating: 4,
+    tag: "New",
+  },
+  {
+    id: 7,
+    name: "Cheddar Cheese 200g",
+    category: "Dairy",
+    image: "/images/grocery/cheese_image.png",
+    price: 6.0,
+    offerPrice: 4.8,
+    rating: 5,
+    tag: "Hot Seller",
+  },
+  {
+    id: 8,
+    name: "Basmati Rice 5kg",
+    category: "Grains",
+    image: "/images/grocery/basmati_rice_image.png",
+    price: 12.0,
+    offerPrice: 9.5,
+    rating: 4,
+    tag: "New",
+  },
+  {
+    id: 9,
+    name: "Olive Oil 1L",
+    category: "Cooking Essentials",
+    image: "/images/grocery/olive_oil_image.png",
+    price: 10.0,
+    offerPrice: 7.5,
+    rating: 5,
+    tag: "New",
+  },
+  {
+    id: 10,
+    name: "Bananas (1 dozen)",
+    category: "Fruits",
+    image: "/images/grocery/banana_image_1.png",
+    price: 3.0,
+    offerPrice: 2.0,
+    rating: 4,
+    tag: "Hot Seller",
+  },
+];
+
 export const dummyProducts = [
   // Vegetables
   {
@@ -217,6 +326,7 @@ export const dummyProducts = [
     createdAt: "2025-03-25T07:17:46.018Z",
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
+    rating: 4.5,
   },
   {
     _id: "gd47g34h",
@@ -234,6 +344,7 @@ export const dummyProducts = [
     createdAt: "2025-03-25T07:17:46.018Z",
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
+    rating: 4.5,
   },
   {
     _id: "gd48g45h",
@@ -250,6 +361,7 @@ export const dummyProducts = [
     createdAt: "2025-03-25T07:17:46.018Z",
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
+    rating: 4.5,
   },
   {
     _id: "gd49g56h",
@@ -266,6 +378,7 @@ export const dummyProducts = [
     createdAt: "2025-03-25T07:17:46.018Z",
     updatedAt: "2025-03-25T07:18:13.103Z",
     inStock: true,
+    rating: 4.5,
   },
   {
     _id: "gd50g67h",

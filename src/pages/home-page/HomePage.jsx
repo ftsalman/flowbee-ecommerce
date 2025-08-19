@@ -70,15 +70,16 @@ const HomePage = () => {
       <Hero />
       <Categories data={categoryData} isLoading={fetchStatus} />
       {/* <NewArrivals /> */}
-      <PopularProducts />
+      <BestProduct />
 
       {/* <Collections /> */}
       <ProductSection />
       {/* <TopSeller /> */}
-      <BestProduct />
+
+      <PopularProducts />
       <Service />
       <PromoBanner />
-      <Footer/>
+      <Footer />
 
       {/* <PromoBanner /> */}
     </div>
