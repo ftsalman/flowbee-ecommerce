@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { List } from "../ui/List";
 import { Card } from "../ui/Card";
-import { IconStar } from "../../assets/icons/InterfaceIcons";
+import { IconFavorites, IconStar } from "../../assets/icons/InterfaceIcons";
 import { useShopContext } from "../../context/ShopContext";
 import { SectionHeader } from "../ui/SectionHeader";
+import { Button } from "../ui/button/Button";
 
 const DummyData = [
   {
@@ -102,6 +103,7 @@ export const BestProduct = () => {
   // States
   const { bestsellers } = useShopContext();
   const [isLoading, setIsLoading] = useState("loading"); // loading, default, error
+    const [favourites, setFavourites] = useState(new Set());
 
   //useEffect
 
@@ -142,19 +144,34 @@ export const BestProduct = () => {
         <List
           data={bestsellers}
           uniqueKey="id"
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+          className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
           render={(item) => (
-            <Card className="relative p-4 border-2 border-yellow-100 rounded-2xl shadow-sm hover:shadow-md transition text-center">
-              {/* Tag */}
-              {item.tag && (
-                <span
-                  className={`absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded-full ${getTagStyles(
-                    item.tag
-                  )}`}
+            <Card className="relative  p-4 border-2 border-yellow-100 rounded-2xl shadow-sm hover:shadow-md transition text-center">
+              <div className=" flex  items-center justify-between">
+                {/* Tag */}
+                {item.tag && (
+                  <span
+                    className={`absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded-full ${getTagStyles(
+                      item.tag
+                    )}`}
+                  >
+                    {item.tag}
+                  </span>
+                )}
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={() => toggleFav(item.id)}
+                  className="absolute top-1 right-1 border-none shadow-none   rounded-full p-2"
                 >
-                  {item.tag}
-                </span>
-              )}
+                  <IconFavorites
+                    size={20}
+                    className={
+                      favourites.has(item.id) ? "text-red-500" : "text-gray-600"
+                    }
+                  />
+                </Button>
+              </div>
 
               <div className="group flex items-center justify-center mb-3">
                 <img

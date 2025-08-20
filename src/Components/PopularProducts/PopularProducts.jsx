@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { List } from "../ui/List";
 import { Card } from "../ui/Card";
-import { IconShoppingCart, IconStar } from "../../assets/icons/InterfaceIcons";
+import {
+  IconFavorites,
+  IconShoppingCart,
+  IconStar,
+} from "../../assets/icons/InterfaceIcons";
 import { Button } from "../ui/button/Button";
 import { SectionHeader } from "../ui/SectionHeader";
 
@@ -137,6 +141,7 @@ export const PopularProducts = () => {
   const [page, setPage] = useState(0);
   const [popularData, setPopularData] = useState(products);
   const [isLoading, setIsLoading] = useState("loading"); // loading, default, error
+  const [favourites,setFavourites]  = useState(new Set())
 
   // Ref
   const trackRef = useRef(null);
@@ -253,21 +258,38 @@ export const PopularProducts = () => {
                 >
                   <Card className="space-y-3 p-4 w-[255px] max-w-full h-full">
                     <div className="relative flex justify-center items-center p-2 rounded-md border border-gray-200 bg-gray-100 h-40">
-                      {item.status && (
-                        <span
-                          className={`absolute top-2 left-2 px-2 py-1 text-white font-semibold text-xs rounded-md ${getTagStyles(
-                            item.status
-                          )}`}
+                      <div>
+                        {item.status && (
+                          <span
+                            className={`absolute top-0 left-0 px-1 py-1 text-white  font-semibold text-xs rounded-r-4xl ${getTagStyles(
+                              item.status
+                            )}`}
+                          >
+                            {item.status === "sale"
+                              ? `-${item.discount}`
+                              : item.status === "new"
+                              ? "New"
+                              : item.status === "out"
+                              ? "Out of Stock"
+                              : ""}
+                          </span>
+                        )}
+                        <Button
+                          variant="secondary"
+                          size="icon"
+                          onClick={() => toggleFav(item.id)}
+                          className="absolute top-0 right-0 bg-transparent shadow-none border-none rounded-full p-1.5"
                         >
-                          {item.status === "sale"
-                            ? `-${item.discount}`
-                            : item.status === "new"
-                            ? "New"
-                            : item.status === "out"
-                            ? "Out of Stock"
-                            : ""}
-                        </span>
-                      )}
+                          <IconFavorites
+                            size="24"
+                            className={
+                              favourites.has(item.id)
+                                ? "text-red-500"
+                                : "text-gray-600"
+                            }
+                          />
+                        </Button>
+                      </div>
 
                       <img
                         src={item.image}
