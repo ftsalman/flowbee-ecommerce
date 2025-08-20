@@ -18,7 +18,7 @@ export const CategoryList = ({ openCategory }) => {
             className={`px-8 py-6 border-r last:border-none border-neutral-200
                         ${i % 2 === 0 ? "bg-white" : "bg-[#FFF3D1]"}`}
           >
-            <h4 className="font-semibold text-yellow-600 text-sm mb-2">
+            <h4 className="font-semibold text-yellow-400 text-sm mb-2">
               {sub.title}
             </h4>
 
@@ -26,7 +26,7 @@ export const CategoryList = ({ openCategory }) => {
               {sub.items.map((item, j) => (
                 <li
                   key={j}
-                  className="text-sm text-gray-700 hover:text-yellow-600 cursor-pointer transition-colors"
+                  className="text-sm  w-[300px] text-gray-700 hover:text-yellow-500 cursor-pointer transition-colors"
                 >
                   {item}
                 </li>
