@@ -11,10 +11,10 @@ import { OrdersHistoryPage } from "../pages/OrdersHistoryPage";
 import CartPage from "../pages/CartPage";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/home" replace={true} />,
-  },
+  // {
+  //   path: "/",
+  //   element: <Navigate to="/home" replace={true} />,
+  // },
   // {
   //   path: "auth",
   //   children: [
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
   // },
 
   {
-    path: "/home",
+    path: "/",
     element: <HomeLayout />,
     children: [
       {
