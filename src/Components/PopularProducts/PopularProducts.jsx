@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { List } from "../ui/List";
 import { Card } from "../ui/Card";
 import { IconShoppingCart, IconStar } from "../../assets/icons/InterfaceIcons";
 import { Button } from "../ui/button/Button";
 import { SectionHeader } from "../ui/SectionHeader";
+
+const CARD_WIDTH = 236;
+const CARD_GAP = 16;
+const VISIBLE = 2;
 
 export const PopularProducts = () => {
   const products = [
@@ -16,7 +20,7 @@ export const PopularProducts = () => {
       oldPrice: 32.0,
       discount: "13%",
       image: "/images/grocery/basmati_rice_image.png",
-      rating: 2,
+      rating: 1,
       status: "sale",
     },
     {
@@ -65,110 +69,302 @@ export const PopularProducts = () => {
       discount: "",
       image: "/images/grocery/orange_juice_image.png",
       rating: 1,
-      status: "",
+      status: "new",
+    },
+    {
+      id: 5,
+      name: "Blue Almonds Lightly Salted Vegetables",
+      category: "Fresh Fruit",
+      brand: "Country Crock",
+      price: 23.85,
+      oldPrice: 25.0,
+      discount: "",
+      image: "/images/grocery/orange_juice_image.png",
+      rating: 1,
+      status: "new",
+    },
+    {
+      id: 5,
+      name: "Blue Almonds Lightly Salted Vegetables",
+      category: "Fresh Fruit",
+      brand: "Country Crock",
+      price: 23.85,
+      oldPrice: 25.0,
+      discount: "",
+      image: "/images/grocery/orange_juice_image.png",
+      rating: 1,
+      status: "new",
+    },
+    {
+      id: 5,
+      name: "Blue Almonds Lightly Salted Vegetables",
+      category: "Fresh Fruit",
+      brand: "Country Crock",
+      price: 23.85,
+      oldPrice: 25.0,
+      discount: "",
+      image: "/images/grocery/orange_juice_image.png",
+      rating: 1,
+      status: "new",
+    },
+    {
+      id: 5,
+      name: "Blue Almonds Lightly Salted Vegetables",
+      category: "Fresh Fruit",
+      brand: "Country Crock",
+      price: 23.85,
+      oldPrice: 25.0,
+      discount: "",
+      image: "/images/grocery/orange_juice_image.png",
+      rating: 1,
+      status: "new",
+    },
+    {
+      id: 5,
+      name: "Blue Almonds Lightly Salted Vegetables",
+      category: "Fresh Fruit",
+      brand: "Country Crock",
+      price: 23.85,
+      oldPrice: 25.0,
+      discount: "",
+      image: "/images/grocery/orange_juice_image.png",
+      rating: 1,
+      status: "out",
     },
   ];
 
+  // States
+  const [page, setPage] = useState(0);
+  const [popularData, setPopularData] = useState(products);
+  const [isLoading, setIsLoading] = useState("loading"); // loading, default, error
+
+  // Ref
+  const trackRef = useRef(null);
+
+  const pages = Math.ceil(popularData.length / VISIBLE);
+
+  // Scroll to page function (moved outside useEffect)
+  const scrollToPage = (pageIndex) => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const scrollAmount = pageIndex * (CARD_WIDTH + CARD_GAP) * VISIBLE;
+    el.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+    setPage(pageIndex);
+  };
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const handleScroll = () => {
+      const scrollPos = el.scrollLeft;
+      const pageWidth = (CARD_WIDTH + CARD_GAP) * VISIBLE;
+      const index = Math.round(scrollPos / pageWidth);
+
+      if (index !== page && index >= 0 && index < pages) {
+        setPage(index);
+      }
+    };
+
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, [page, pages]);
+
+  const getTagStyles = (tag) => {
+    switch (tag) {
+      case "new":
+        return "bg-green-500 text-white";
+      case "out":
+        return "bg-red-600 text-white";
+      case "sale":
+        return "bg-yellow-400 text-white";
+      default:
+        return "";
+    }
+  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="px-6 md:px-12 py-10">
       {/* Header */}
-      <div className=" flex items-center justify-center">
-        <SectionHeader
-        header="Top Saller Of Month"
-        
-        />
+      <div className="flex items-center justify-center mb-6">
+        <SectionHeader header="Top Saller Of Month" />
       </div>
 
-      <List
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
-        data={products}
-        uniqueKey="id"
-        render={(item) => (
-          <Card className="space-y-3 p-4">
-            <div className="relative flex justify-center items-center p-2 rounded-md border border-gray-200 bg-gray-100">
-              {/* Status badge */}
-              {item.status === "sale" && (
-                <span className="absolute top-2 left-2 px-2 py-1 text-white font-semibold text-xs rounded-md bg-red-500">
-                  -{item.discount}
-                </span>
-              )}
-              {item.status === "new" && (
-                <span className="absolute top-2 left-2 px-2 py-1 text-white font-semibold text-xs rounded-md bg-green-500">
-                  New
-                </span>
-              )}
-              {item.status === "out" && (
-                <span className="absolute top-2 left-2 px-2 py-1 text-white font-semibold text-xs rounded-md bg-gray-500">
-                  Out of Stock
-                </span>
-              )}
-
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-full object-contain"
+      {pages > 1 && (
+        <div className="flex justify-end gap-2 mb-4">
+          {Array.from({ length: pages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToPage(i)}
+              className="relative cursor-pointer h-4 w-4"
+              aria-label={`Go to page ${i + 1}`}
+            >
+              <span
+                className={`absolute top-0 left-0 h-4 w-4 rounded-full border transition ${
+                  page === i ? "border-black" : "border-gray-300"
+                }`}
               />
+              <span
+                className={`absolute top-1 left-1 h-2 w-2 rounded-full transition ${
+                  page === i ? "bg-black" : "bg-gray-300"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Products List */}
+      <div
+        ref={trackRef}
+        className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory hide-scrollbar"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        <div className="flex gap-4 pr-4">
+          {isLoading ? (
+            <div className="flex gap-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <PopularSkeleton key={i} />
+              ))}
             </div>
-
-            <div>
-              <p className="text-xs text-gray-500">{item.category}</p>
-              <h2 className="text-gray-900 font-semibold text-sm mt-1 line-clamp-2">
-                {item.name}
-              </h2>
-            </div>
-
-            <div>
-              {/* Rating */}
-              <div className="flex items-center text-yellow-400 text-xs mb-1">
-                {Array.from({ length: 5 }).map((_, index) =>
-                  index < item.rating ? (
-                    <IconStar key={index} size="12" fill="currentColor" />
-                  ) : (
-                    <IconStar
-                      key={index}
-                      size="12"
-                      fill="none"
-                      stroke="currentColor"
-                    />
-                  )
-                )}
-                <span className="text-gray-500 text-xs ml-1">
-                  ({item.rating})
-                </span>
-              </div>
-
-              <p className="text-sm mb-1 font-medium text-gray-950">
-                By <span className="text-yellow-500">{item.brand}</span>
-              </p>
-
-              {/* Price and Add to Cart */}
-              <div className="flex items-center justify-between mt-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-600 text-sm font-semibold">
-                    AED{item.price.toFixed(2)}
-                  </span>
-                  {item.oldPrice && (
-                    <span className="line-through text-gray-400 text-xs">
-                      AED{item.oldPrice.toFixed(2)}
-                    </span>
-                  )}
-                </div>
-
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  className="flex items-center gap-1 bg-green-500 hover:bg-green-600 text-white px-2 py-1"
-                  disabled={item.status === "out"}
+          ) : (
+            <List
+              className="flex gap-4"
+              data={popularData}
+              uniqueKey="id"
+              render={(item) => (
+                <div
+                  className="snap-start"
+                  style={{ minWidth: `${CARD_WIDTH}px` }}
                 >
-                  <IconShoppingCart size="20" />
-                  <span className="text-xs">Add To Cart</span>
-                </Button>
-              </div>
-            </div>
-          </Card>
-        )}
-      />
+                  <Card className="space-y-3 p-4 w-[255px] max-w-full h-full">
+                    <div className="relative flex justify-center items-center p-2 rounded-md border border-gray-200 bg-gray-100 h-40">
+                      {item.status && (
+                        <span
+                          className={`absolute top-2 left-2 px-2 py-1 text-white font-semibold text-xs rounded-md ${getTagStyles(
+                            item.status
+                          )}`}
+                        >
+                          {item.status === "sale"
+                            ? `-${item.discount}`
+                            : item.status === "new"
+                            ? "New"
+                            : item.status === "out"
+                            ? "Out of Stock"
+                            : ""}
+                        </span>
+                      )}
+
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full hover:scale-110 transition-all duration-300 object-contain"
+                      />
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-gray-500">{item.category}</p>
+                      <h2 className="text-gray-900 font-semibold text-sm mt-1 line-clamp-2">
+                        {item.name}
+                      </h2>
+                    </div>
+
+                    <div>
+                      {/* Rating */}
+                      <div className="flex items-center text-yellow-400 text-xs mb-1">
+                        {Array.from({ length: 5 }).map((_, index) =>
+                          index < item.rating ? (
+                            <IconStar
+                              key={index}
+                              size="12"
+                              fill="currentColor"
+                            />
+                          ) : (
+                            <IconStar
+                              key={index}
+                              size="12"
+                              fill="none"
+                              stroke="currentColor"
+                            />
+                          )
+                        )}
+                        <span className="text-gray-500 text-xs ml-1">
+                          ({item.rating})
+                        </span>
+                      </div>
+
+                      <p className="text-sm mb-1 font-medium text-gray-950">
+                        By <span className="text-yellow-500">{item.brand}</span>
+                      </p>
+
+                      {/* Price and Add to Cart */}
+                      <div className="flex items-center justify-between gap-1 mt-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-green-600 text-sm font-semibold">
+                            AED{item.price.toFixed(2)}
+                          </span>
+                          {item.oldPrice && (
+                            <span className="line-through text-gray-400 text-xs">
+                              AED{item.oldPrice.toFixed(2)}
+                            </span>
+                          )}
+                        </div>
+
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-2 text-white w-full"
+                          disabled={item.status === "out"}
+                        >
+                          <IconShoppingCart size="10" />
+                          <span className="text-xs  max-w-full w-[4rem] ">
+                            Add To Cart
+                          </span>
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              )}
+            />
+          )}
+        </div>
+      </div>
     </div>
+  );
+};
+
+export const PopularSkeleton = () => {
+  return (
+    <Card className="space-y-3 p-4 w-[255px] max-w-full h-full animate-pulse">
+      <div className="h-40 w-full bg-gray-200 rounded-md" />
+
+      <div className="h-3 w-20 bg-gray-200 rounded" />
+
+      <div className="h-4 w-40 bg-gray-200 rounded mt-2" />
+
+      <div className="h-3 w-24 bg-gray-200 rounded mt-2" />
+
+      <div className="h-3 w-32 bg-gray-200 rounded mt-2" />
+
+      <div className="flex items-center justify-between gap-2 mt-4">
+        <div className="h-4 w-16 bg-gray-200 rounded" />
+        <div className="h-8 w-20 bg-gray-300 rounded" />
+      </div>
+    </Card>
   );
 };

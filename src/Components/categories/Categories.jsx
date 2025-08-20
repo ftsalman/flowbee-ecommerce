@@ -118,7 +118,7 @@ export const Categories = ({ data = [], isLoading = false }) => {
   return (
     <section className="mt-16 px-7">
       <div>
-        <SectionHeader header=" Popular Categories" />
+        <SectionHeader header=" Our Categories" />
       </div>
 
       <div className="px-4">

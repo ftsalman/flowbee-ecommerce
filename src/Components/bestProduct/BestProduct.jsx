@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { List } from "../ui/List";
 import { Card } from "../ui/Card";
 import { IconStar } from "../../assets/icons/InterfaceIcons";
@@ -99,7 +99,18 @@ const DummyData = [
 ];
 
 export const BestProduct = () => {
-  const { bestsellers, loading } = useShopContext();
+  // States
+  const { bestsellers } = useShopContext();
+  const [isLoading, setIsLoading] = useState("loading"); // loading, default, error
+
+  //useEffect
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   const getTagStyles = (tag) => {
     switch (tag) {
@@ -115,21 +126,16 @@ export const BestProduct = () => {
     }
   };
 
-  const [isloading, setIsLoading] = useState(false);
-
   return (
     <div className="py-7 px-6 md:px-16">
       <div>
         <SectionHeader header="Top Products" />
       </div>
 
-      {loading ? (
+      {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={i}
-              className="h-48 bg-gray-200 rounded-2xl animate-pulse"
-            ></div>
+            <BestProductSkeleton key={i} />
           ))}
         </div>
       ) : (
@@ -188,5 +194,21 @@ export const BestProduct = () => {
         />
       )}
     </div>
+  );
+};
+
+export const BestProductSkeleton = () => {
+  return (
+    <Card className="p-4 border-2 border-yellow-100 rounded-2xl shadow-sm space-y-3 animate-pulse">
+      <div className="h-28 w-28 bg-gray-200 mx-auto rounded-md" />
+      <div className="h-3 w-20 bg-gray-200 rounded mx-auto" />
+      <div className="h-4 w-32 bg-gray-200 rounded mx-auto" />
+      <div className="h-5 w-24 bg-gray-200 rounded mx-auto" />
+      <div className="flex justify-center gap-1">
+        {Array.from({ length: 5 }).map((_, j) => (
+          <div key={j} className="h-3 w-3 bg-gray-200 rounded-full" />
+        ))}
+      </div>
+    </Card>
   );
 };
