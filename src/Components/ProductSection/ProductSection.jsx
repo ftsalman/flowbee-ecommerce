@@ -5,7 +5,7 @@ import { Button } from "../ui/button/Button";
 import { IconArrowRight } from "../../assets/icons/InterfaceIcons";
 
 export const ProductSection = () => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState("loading"); // loading, default, error
 
   const productSections = [
     {
@@ -29,14 +29,17 @@ export const ProductSection = () => {
   ];
 
   // Simulate loading for demo
+
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
     <div className="p-4">
-      {loading ? (
+      {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {Array.from({ length: 3 }).map((_, i) => (
             <div
